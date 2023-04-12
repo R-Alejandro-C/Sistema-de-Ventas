@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const login = (email, password)=>{
+export const login = (username, password)=>{
     let body = {
-        email:email,
+        username:username,
         password:password
     }
-    return axios.post("https://reqres.in/api/login", body)
+    return axios.post("http://localhost:4000/auth/login", body)
 }

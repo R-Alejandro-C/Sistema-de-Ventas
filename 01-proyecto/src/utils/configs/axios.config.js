@@ -2,7 +2,7 @@ import axios from "axios"
 
 export default axios.create(
     {
-        baseURL: `https://reqres.in/api`,
+        baseURL: `localhost:4000/api`,
         responseType:"json",
         timeout: 5000
     }

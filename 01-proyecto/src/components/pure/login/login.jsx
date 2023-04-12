@@ -1,31 +1,51 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import {Navigate, Outlet, useNavigate} from "react-router-dom"
 import { login } from '../../../services/axiosLoginService';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import RegisterPage from '../../../pages/auth/registerPage';
+import Homepage from '../../../pages/home/homepage';
 
 
 
-const Login = () => {
-
+const Login = ({isLogin, children, redirectTo="/", ROL}) => {
+const [isLoged, setisLoged] = useState(false);
 const authUser = (values)=>{
-    login(values.email, values.password)
+    login(values.username, values.password)
     .then((response)=>{
+        console.log(JSON.stringify(response.data));
         alert(JSON.stringify(response.data))
+        if (JSON.stringify(response.data).length>0) {
+            setisLoged(true)
+        } else {
+            setisLoged(false)
+        }
+
     })
     .catch((error)=>{
         alert("ocurrio un error", error)
+        console.log();
+        
     })
-    .finally(()=>{
+    .finally((response)=>{
         console.log("Login completed");
+        
     })
 }
 
+
+const Navigate = useNavigate()
+
 const initialCredentials = {
-    email: "",
+    username: "",
     password: ""
 }
+
+if (!isLoged) {
+    
     return (
+
+        isLoged? (Navigate("/")):(<div>
         <div className='d-flex justify-content-center align-align-items-center'>
             
 
@@ -58,15 +78,15 @@ const initialCredentials = {
                     <div className='d-flex justify-content-center'>
                     <img src='https://ps.w.org/login-customizer/assets/icon-256x256.png?rev=2455454' style={{width:"6rem"}}/> 
                     </div>
-                    <div className='card-body p-5 d-flex justify-content-center align-items-center'>
+                    <div className='card-body d-flex justify-content-center align-items-center'>
                     <Form>
-                        <div  class="mb-3">
-                    <label htmlFor='email' className='form-label'>Correo electronico</label>
-                    <Field id="email" type="email" name="email" placeholder="prueba@gmail.com"  className="form-control" />
+                        <div  className="mb-3">
+                    <label htmlFor='username' className='form-label'>Correo electronico</label>
+                    <Field id="username" type="text" name="username" placeholder="prueba@gmail.com"  className="form-control" />
                     {
-                        errors.email && touched.email && (
+                        errors.username && touched.username && (
            
-                            <ErrorMessage name="email" component={"div"}></ErrorMessage>
+                            <ErrorMessage name="username" component={"div"}></ErrorMessage>
                         )
                     }
                     </div>
@@ -79,12 +99,9 @@ const initialCredentials = {
                             </div>
                         )
                     }
-                    <button type="submit" className='btn btn-primary m-2 w-100'>
-                        Submit
+                    <button type="submit" className='btn btn-primary mt-3 w-100'>
+                        Ingresar
                     </button>
-                    {isSubmitting? (<p>Loguea tus credenciales</p>):null}
-                    <p>¿No tienes cuenta?</p>
-                     <p>Crear cuenta</p>
                 </Form>
                 </div>
                 </div>
@@ -92,12 +109,15 @@ const initialCredentials = {
          
         </Formik>
         </div>
+        </div>)
     );
+}else{
+    return children? children: <Outlet/>
+}
 };
 
 
 Login.propTypes = {
-
 };
 
 

@@ -2,10 +2,12 @@ import React from 'react';
 import Login from '../../components/pure/login/login';
 
 const LoginPage = () => {
+    const mensaje=(text)=>{
+console.log(text);
+    }
     return (
         <div>
-            <h1>Login</h1>
-            <Login></Login>
+            <Login mensaje={mensaje}></Login>
         </div>
     );
 }
