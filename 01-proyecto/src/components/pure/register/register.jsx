@@ -11,15 +11,22 @@ const Register = () => {
     const createUser = (values) => {
         register(values.name, values.lastname, values.DNI, values.email, values.password, values.Rol, values.job)
             .then((response) => {
-                console.log("usuario creado", response.data.createdAt);
+                console.log("usuario creado", response.data);
+                console.log(values.name +" "+ROLREF.current.value+" "+values.job+"");
+        
             })
             .catch((error) => {
-                alert("Ocurrio un error, ", error);
+                alert("Ocurrio un error, ");
+                console.log(error);
+                console.log(values.name + " " +values.DNI+" "+ values.password+" "+values.email+" "+values.Rol+" "+values.job+"");
             })
             .finally(() => {
                 console.log("Fin de creacion de usuario");
             })
     }
+
+
+    const ROLREF = useRef(null)
 
     const initialCredentials = {
         name: "",
@@ -27,7 +34,7 @@ const Register = () => {
         DNI: "",
         email: "",
         password: "",
-        Rol: "",
+        Rol: 1,
         job: ""
     }
     return (
@@ -111,8 +118,8 @@ const Register = () => {
                                             </div>
                                             <div className='mb-lg-3 me-lg-2'>
                                                 <label htmlFor='ROL' className='form-label m-2'>Rol</label>
-                                                <select id="ROL" type="text" name="ROL" className="form-select">
-                                                <option selected>
+                                                <select id="ROL" type="text" name="ROL" className="form-select" ref={ROLREF}>
+                                                <option selected value={2}>
                                                 Vendedor
                                                 </option>
                                                 <option value={1}>

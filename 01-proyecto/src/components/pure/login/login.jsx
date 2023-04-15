@@ -10,38 +10,51 @@ import Homepage from '../../../pages/home/homepage';
 
 const Login = ({isLogin, children, redirectTo="/", ROL}) => {
 const [isLoged, setisLoged] = useState(false);
+let TokenStorage;
 const authUser = (values)=>{
     login(values.username, values.password)
     .then((response)=>{
-        console.log(JSON.stringify(response.data));
-        alert(JSON.stringify(response.data))
-        if (JSON.stringify(response.data).length>0) {
-            setisLoged(true)
+        console.log(JSON.stringify(response.status));
+        alert(JSON.stringify(response.data.token))
+        
+    localStorage.setItem("TOKEN", response.data.token)
+        if (JSON.stringify(response.data.token)) {
+            setisLoged(!isLoged)
+            console.log(isLoged);
+            
+        TokenStorage = localStorage.setItem("TOKEN", JSON.stringify(response.data.token))
         } else {
-            setisLoged(false)
+            console.log("ll");
+            console.log(JSON.stringify(response.data.token));
         }
 
     })
     .catch((error)=>{
         alert("ocurrio un error", error)
-        console.log();
+        console.log(values.username);
+        console.log(values.password);
+        console.log("----------------------");
+        console.log(error);
         
     })
     .finally((response)=>{
         console.log("Login completed");
         
     })
+    
+console.log(isLoged);
 }
 
 
 const Navigate = useNavigate()
 
+console.log(localStorage.getItem("TOKEN"));
+sessionStorage.setItem("persona", "rr")
 const initialCredentials = {
     username: "",
     password: ""
 }
 
-if (!isLoged) {
     
     return (
 
@@ -99,6 +112,7 @@ if (!isLoged) {
                             </div>
                         )
                     }
+                    
                     <button type="submit" className='btn btn-primary mt-3 w-100'>
                         Ingresar
                     </button>
@@ -111,10 +125,7 @@ if (!isLoged) {
         </div>
         </div>)
     );
-}else{
-    return children? children: <Outlet/>
 }
-};
 
 
 Login.propTypes = {
