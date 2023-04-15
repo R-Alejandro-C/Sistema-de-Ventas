@@ -9,11 +9,11 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 const Register = () => {
 
     const createUser = (values) => {
-        register(values.name, values.lastname, values.DNI, values.email, values.password, values.Rol, values.job)
+        register(values.name, values.lastname, values.DNI, values.email, values.password, ROLREF.current.value, values.job)
             .then((response) => {
                 console.log("usuario creado", response.data);
                 console.log(values.name +" "+ROLREF.current.value+" "+values.job+"");
-        
+                alert("Usuario creado")
             })
             .catch((error) => {
                 alert("Ocurrio un error, ");

@@ -17,9 +17,10 @@ const authUser = (values)=>{
         console.log(JSON.stringify(response.status));
         if (JSON.stringify(response.data.token)) {
             setisLoged(!isLoged)
-            console.log(isLoged);
+            console.log(response.data);
             localStorage.setItem("TOKEN", JSON.stringify(response.data.token))
             alert(JSON.stringify(response.data.token))
+            localStorage.setItem("RoleId", JSON.stringify(response.data.user.roleId))
         } else {
             alert("Usuario y/o contraseña incorrecta");
         }
@@ -53,7 +54,7 @@ const initialCredentials = {
     
     return (
 
-        isLoged? (Navigate("/")):(<div>
+        isLoged ? (Navigate("/")):(<div>
         <div className='d-flex justify-content-center align-align-items-center'>
             
 

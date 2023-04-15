@@ -16,11 +16,16 @@ const MainRoutes = () => {
         <Router>
             <Routes>
              <Route element={<ProtectedPages isLogin={!!localStorage.getItem("TOKEN")} redirectTo='/login'></ProtectedPages>}>
-                <Route path='/register' element={<RegisterPage></RegisterPage>}></Route>
+                
                 <Route path='/' element={<Homepage></Homepage>}></Route>
                 <Route path='/products' element={<ProductsC></ProductsC>}></Route>
                 </Route>
+                <Route element={<ProtectedPages isLogin={!localStorage.getItem("TOKEN")} redirectTo='/'></ProtectedPages>}>
                  <Route path='/login' element={<LoginPage></LoginPage>}></Route>
+                 </Route>
+                 <Route element={<ProtectedPages isLogin={!!localStorage.getItem("TOKEN") && localStorage.getItem("RoleId")==="1"} redirectTo='/'></ProtectedPages>}>
+                 <Route path='/register' element={<RegisterPage></RegisterPage>}></Route>
+                 </Route>
              
             </Routes>
         </Router>
