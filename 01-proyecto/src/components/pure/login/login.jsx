@@ -10,22 +10,18 @@ import Homepage from '../../../pages/home/homepage';
 
 const Login = ({isLogin, children, redirectTo="/", ROL}) => {
 const [isLoged, setisLoged] = useState(false);
-let TokenStorage;
+
 const authUser = (values)=>{
     login(values.username, values.password)
     .then((response)=>{
         console.log(JSON.stringify(response.status));
-        alert(JSON.stringify(response.data.token))
-        
-    localStorage.setItem("TOKEN", response.data.token)
         if (JSON.stringify(response.data.token)) {
             setisLoged(!isLoged)
             console.log(isLoged);
-            
-        TokenStorage = localStorage.setItem("TOKEN", JSON.stringify(response.data.token))
+            localStorage.setItem("TOKEN", JSON.stringify(response.data.token))
+            alert(JSON.stringify(response.data.token))
         } else {
-            console.log("ll");
-            console.log(JSON.stringify(response.data.token));
+            alert("Usuario y/o contraseña incorrecta");
         }
 
     })
@@ -49,7 +45,6 @@ console.log(isLoged);
 const Navigate = useNavigate()
 
 console.log(localStorage.getItem("TOKEN"));
-sessionStorage.setItem("persona", "rr")
 const initialCredentials = {
     username: "",
     password: ""
