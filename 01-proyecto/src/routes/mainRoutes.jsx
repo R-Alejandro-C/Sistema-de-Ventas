@@ -8,13 +8,22 @@ import Homepage from '../pages/home/homepage';
 import Login from '../components/pure/login/login';
 import PropTypes from 'prop-types';
 import ProductsC from '../components/container/ProductsC';
+import Navbar from '../components/Navbar';
+import SideBar from '../components/SideBar';
 const MainRoutes = () => {
 
     console.log(!!localStorage.getItem("TOKEN"));
    
     return (
         <Router>
+        <div>
+       <Navbar></Navbar>
+          <div className='d-flex'>
+            <SideBar></SideBar>
+            <div className='content'>
+
             <Routes>
+     
              <Route element={<ProtectedPages isLogin={!!localStorage.getItem("TOKEN")} redirectTo='/login'></ProtectedPages>}>
                 
                 <Route path='/' element={<Homepage></Homepage>}></Route>
@@ -28,6 +37,9 @@ const MainRoutes = () => {
                  </Route>
              
             </Routes>
+             </div>
+          </div>
+          </div>
         </Router>
     );
 }

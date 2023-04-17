@@ -6,16 +6,13 @@ const SideBar = () => {
         <div className='sidebar'>
             <ul>
                 <li>
-                <Link  to={"/products"}>Productos</Link>
+                <Link  to={"/"}>Inicio</Link>
                 </li>
                 <li>
                 <Link  to={"/products"}>Productos</Link>
                 </li>
                 <li>
-                <Link  to={"/products"}>Productos</Link>
-                </li>
-                <li>
-                <Link  to={"/products"}>Productos</Link>
+                <Link  to={"/register"}>Registrar</Link>
                 </li>
                
                 

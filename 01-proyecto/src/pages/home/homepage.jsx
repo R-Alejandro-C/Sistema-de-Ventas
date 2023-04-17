@@ -7,13 +7,7 @@ import Products from '../../components/pure/tables/Products';
 const Homepage = () => {
     return (
         <div>
-            <Navbar></Navbar>
-            <div className='d-flex'>
-                <SideBar></SideBar>
-                <div className='Content'>
-                    <Products></Products>
-                </div>
-            </div>
+         <h1>Holas</h1>
                     </div>
     );
 }
