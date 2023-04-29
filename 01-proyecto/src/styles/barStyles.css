@@ -1,6 +1,6 @@
 .sidebar{
-    width: 12rem;
-    height: calc(100vh - 56px);
+    width: 8rem;
+    height: calc(100vh - 55px);
     border-right: 1px solid gray;
     padding-right: 10rem;
     margin-right: 10%;
@@ -25,13 +25,12 @@
 
 
 .sidebar ul li a :hover{
-    color:  rgb(157, 0, 0);
+    color:  rgb(50, 0, 0);
 }
 
 /*------------------------------------------------- */
 
 .navbar{
     
-    width: calc(100% - 12rem) ;
     border-bottom: 1px solid gray;
 }

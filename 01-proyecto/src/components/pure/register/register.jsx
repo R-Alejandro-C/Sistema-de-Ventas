@@ -9,7 +9,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 const Register = () => {
 
     const createUser = (values) => {
-        register(values.name, values.lastname, values.DNI, values.email, values.password, ROLREF.current.value, values.job)
+        register( values.DNI, values.password, values.name, values.lastname, values.email,ROLREF.current.value,values.job)
             .then((response) => {
                 console.log("usuario creado", response.data);
                 console.log(values.name +" "+ROLREF.current.value+" "+values.job+"");
@@ -68,7 +68,7 @@ const Register = () => {
                     handBluer }) => (
                     <div className='justify-content-center d-flex card p-lg-2 m-lg-3'>
                         <div className='d-flex justify-content-center'>
-                            <img src='https://ps.w.org/login-customizer/assets/icon-256x256.png?rev=2455454' style={{ width: "6rem" }} />
+                    
                         </div>
                         <div className='card-body p-lg-2 d-flex justify-content-center align-items-center'>
                             <Form>

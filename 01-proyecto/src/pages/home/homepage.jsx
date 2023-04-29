@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../../components/Navbar';
 import SideBar from '../../components/SideBar';
 import MainRoutes from '../../routes/mainRoutes';
-import Products from '../../components/pure/tables/Products';
+import Products from '../../components/pure/tables/Provedores';
 
 const Homepage = () => {
     return (

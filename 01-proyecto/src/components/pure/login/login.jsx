@@ -19,8 +19,11 @@ const authUser = (values)=>{
             setisLoged(!isLoged)
             console.log(response.data);
             localStorage.setItem("TOKEN", JSON.stringify(response.data.token))
+            sessionStorage.setItem("TOKEN", JSON.stringify(response.data.token))
             alert(JSON.stringify(response.data.token))
             localStorage.setItem("RoleId", JSON.stringify(response.data.user.roleId))
+            sessionStorage.setItem("RoleId", JSON.stringify(response.data.user.roleId))
+            
         } else {
             alert("Usuario y/o contraseña incorrecta");
         }
@@ -85,7 +88,7 @@ const initialCredentials = {
                 handBluer})=>(
                     <div className='justify-content-center d-flex card m-5 p-5'> 
                     <div className='d-flex justify-content-center'>
-                    <img src='https://ps.w.org/login-customizer/assets/icon-256x256.png?rev=2455454' style={{width:"6rem"}}/> 
+                   
                     </div>
                     <div className='card-body d-flex justify-content-center align-items-center'>
                     <Form>

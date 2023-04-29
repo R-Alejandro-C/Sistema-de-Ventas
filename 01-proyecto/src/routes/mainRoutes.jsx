@@ -7,9 +7,13 @@ import { ROLES } from '../models/Roles';
 import Homepage from '../pages/home/homepage';
 import Login from '../components/pure/login/login';
 import PropTypes from 'prop-types';
-import ProductsC from '../components/container/ProductsC';
+import ProductsC from '../components/container/Provedores';
 import Navbar from '../components/Navbar';
 import SideBar from '../components/SideBar';
+import Provedores from '../components/container/Provedores';
+import ProvedoresC from '../components/container/Provedores';
+import UsuariosC from '../components/container/Usuarios';
+import Categorias from '../components/pure/register/Categories';
 const MainRoutes = () => {
 
     console.log(!!localStorage.getItem("TOKEN"));
@@ -27,7 +31,9 @@ const MainRoutes = () => {
              <Route element={<ProtectedPages isLogin={!!localStorage.getItem("TOKEN")} redirectTo='/login'></ProtectedPages>}>
                 
                 <Route path='/' element={<Homepage></Homepage>}></Route>
-                <Route path='/products' element={<ProductsC></ProductsC>}></Route>
+                <Route path='/providers' element={<ProvedoresC></ProvedoresC>}></Route>
+                <Route path='/users' element={<UsuariosC></UsuariosC>}></Route>
+                <Route path='/categories' element={<Categorias></Categorias>}></Route>
                 </Route>
                 <Route element={<ProtectedPages isLogin={!localStorage.getItem("TOKEN")} redirectTo='/'></ProtectedPages>}>
                  <Route path='/login' element={<LoginPage></LoginPage>}></Route>

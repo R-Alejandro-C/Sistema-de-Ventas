@@ -9,13 +9,23 @@ const SideBar = () => {
                 <Link  to={"/"}>Inicio</Link>
                 </li>
                 <li>
-                <Link  to={"/products"}>Productos</Link>
+                <Link  to={"/providers"}>Provedores</Link>
                 </li>
                 <li>
                 <Link  to={"/register"}>Registrar</Link>
                 </li>
-               
-                
+                <li>
+                <Link  to={"/users"}>Usuarios</Link>
+                </li>
+                <li>
+                <Link  to={"/categories"}>Categorias</Link>
+                </li>
+                <li>
+                <Link  to={"/products"}>Productos</Link>
+                </li>
+                <li>
+                <Link  to={"/categories"}>Categorias</Link>
+                </li>
             </ul>
         </div>
     );
