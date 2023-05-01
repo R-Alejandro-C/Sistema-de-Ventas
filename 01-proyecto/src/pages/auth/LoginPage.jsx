@@ -7,7 +7,7 @@ console.log(text);
     }
     return (
         <div>
-            <Login mensaje={mensaje}></Login>
+            <Login></Login>
         </div>
     );
 }

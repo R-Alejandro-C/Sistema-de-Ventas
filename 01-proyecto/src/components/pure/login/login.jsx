@@ -1,6 +1,6 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, createContext} from 'react';
 import PropTypes from 'prop-types';
-import {Navigate, Outlet, useNavigate} from "react-router-dom"
+import {Navigate, Outlet} from "react-router-dom"
 import { login } from '../../../services/axiosLoginService';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import RegisterPage from '../../../pages/auth/registerPage';
@@ -8,22 +8,22 @@ import Homepage from '../../../pages/home/homepage';
 
 
 
-const Login = ({isLogin, children, redirectTo="/", ROL}) => {
-const [isLoged, setisLoged] = useState(false);
+export const UserContext = createContext()
 
+const Login = () => {
+
+const [isLoged, setisLoged] = useState(localStorage.getItem("TOKEN"));
 const authUser = (values)=>{
     login(values.username, values.password)
     .then((response)=>{
         console.log(JSON.stringify(response.status));
         if (JSON.stringify(response.data.token)) {
-            setisLoged(!isLoged)
             console.log(response.data);
             localStorage.setItem("TOKEN", JSON.stringify(response.data.token))
-            sessionStorage.setItem("TOKEN", JSON.stringify(response.data.token))
+            
             alert(JSON.stringify(response.data.token))
             localStorage.setItem("RoleId", JSON.stringify(response.data.user.roleId))
-            sessionStorage.setItem("RoleId", JSON.stringify(response.data.user.roleId))
-            
+           
         } else {
             alert("Usuario y/o contraseña incorrecta");
         }
@@ -37,18 +37,8 @@ const authUser = (values)=>{
         console.log(error);
         
     })
-    .finally((response)=>{
-        console.log("Login completed");
-        
-    })
-    
-console.log(isLoged);
+
 }
-
-
-const Navigate = useNavigate()
-
-console.log(localStorage.getItem("TOKEN"));
 const initialCredentials = {
     username: "",
     password: ""
@@ -56,8 +46,8 @@ const initialCredentials = {
 
     
     return (
-
-        isLoged ? (Navigate("/")):(<div>
+<UserContext.Provider value={{isLoged}}>
+        <div>
         <div className='d-flex justify-content-center align-align-items-center'>
             
 
@@ -67,18 +57,6 @@ const initialCredentials = {
             authUser(values)
 
         }}>
-{/** 
-*             { props =>{
-            const{
-                values,
-                touched,
-                errors,
-                isSubmitting,
-                handleChange,
-                handBluer
-            } = props
-            return(...
-*/}
  
 {({      values,
                 touched,
@@ -122,8 +100,10 @@ const initialCredentials = {
          
         </Formik>
         </div>
-        </div>)
-    );
+        </div>
+        </UserContext.Provider>
+        )
+    
 }
 
 

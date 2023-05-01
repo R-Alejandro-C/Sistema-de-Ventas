@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const CreateProvider = (Ruc, name, phone, email) => {
+export const CreateProvider = (RUC, name, phone, email) => {
     let body = {
-        Ruc: Ruc, 
+        RUC: RUC, 
         name: name,
         phone: phone,
         email: email

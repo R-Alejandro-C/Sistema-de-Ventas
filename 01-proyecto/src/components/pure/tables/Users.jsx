@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { GetUser, GetDetailsUser, DeleteUser } from '../../../services/axiosUsers';
-
+import Modal from '../Modal';
+import Register from '../register/register';
 const Users = () => {
     const [User, setUser] = useState([]);
     const [selectedUser, setselectedUser] = useState([]);
@@ -63,7 +64,10 @@ const Users = () => {
 
 
     return (
+        
         <>
+    
+
         {User.map((User, index) =>
             ( <tr key={index} User={GetDetailsUser(User.id)}>
    
@@ -97,20 +101,22 @@ const Users = () => {
      <td className="aling-middle">
      
      <span className="ms-2"> 
-      {User.password ? (<p>*****</p>):(<p>Sin contraseña</p>)}
+      {User.password ? ("*****"):(<p>Sin contraseña</p>)}
       </span> 
      </td>
      <td className="aling-middle">
      
      <span className="">  
-     <div className='center mt-3'>  
-     <button className='btn btn-danger ' onClick={()=>DeleteUsers(User.id)}>Eliminar</button>
-     <button className='btn btn-warning ms-2' onClick={()=>EditUsers(User.id)}>Editar</button>
+     <div className='center'>  
+     <button className='btn btn-danger ms-1' onClick={()=>DeleteUsers(User.id)}>Eliminar</button>
+     <button className='btn btn-warning ms-1 center'>Editar</button>
      </div>
      </span> 
      </td>
  </tr>)
            ) }
+     
+          
     </>
     );
 };

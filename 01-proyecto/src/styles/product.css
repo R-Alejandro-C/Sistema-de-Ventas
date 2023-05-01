@@ -22,5 +22,8 @@ h1{
 
 }
 
-
+.categoria{
+    display: flex;
+    margin-left: 50%;
+}
 

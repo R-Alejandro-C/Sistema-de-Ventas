@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { register } from '../../../services/axiosRegisterService';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
-
-
 const Register = () => {
 
     const createUser = (values) => {
@@ -66,11 +64,11 @@ const Register = () => {
                     isSubmitting,
                     handleChange,
                     handBluer }) => (
-                    <div className='justify-content-center d-flex card p-lg-2 m-lg-3'>
+                    <div className=' card justify-content-center d-flex p-lg-2 m-lg-3'>
                         <div className='d-flex justify-content-center'>
                     
                         </div>
-                        <div className='card-body p-lg-2 d-flex justify-content-center align-items-center'>
+                        <div className=' p-lg-2 d-flex justify-content-center align-items-center'>
                             <Form>
                                 <div className="mb-lg-3 d-flex align-items-center g-5">
                                     <div className='mb-lg-3 me-lg-2'>
@@ -145,16 +143,8 @@ const Register = () => {
                                                 }
                                             </div>
                                         </div>
-                                <label htmlFor='job' className='form-label'>Trabajo</label>
-                                <Field id="job" type="text" name="job" placeholder="Trabajo" className="form-control" />
-                                {
-                                    errors.job && touched.job && (
-                                        <div className='error'>
-                                            <p>{errors.password}</p>
-                                        </div>
-                                    )
-                                }
-                                <button type="submit" className='btn btn-primary m-2 w-100'>
+                                
+                                <button type="submit" className='btn btn-primary w-100'>
                                     Crear nuevo usuario
                                 </button>
                             </Form>

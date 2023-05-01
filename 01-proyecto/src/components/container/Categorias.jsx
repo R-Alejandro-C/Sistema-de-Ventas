@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { tareas } from '../../models/Prodructs';
-import { NIVEL } from '../../models/Level';
-import Provedores from '../pure/tables/Provedores';
-import AddProvedor from '../pure/forms/ProvedoresForm';
-import { GetProvider } from '../../services/axiosProviders';
+import Categories from '../pure/tables/Categories';
 import Modal from '../pure/Modal';
-
-const ProvedoresC = () => {
+import AddCategorias from '../pure/forms/Categories';
+import "../../styles/product.css"
+const Categorias = () => {
     const [mostrarModal, setMostrarModal] = useState(false);
 
     const abrirModal = () => {
@@ -22,19 +19,16 @@ const ProvedoresC = () => {
 const Tabla = ()=>{
     return(
        
-        <table className='table table-striped table-bordered m-5' style={{width:"100%"}}>
+        <table className='table table-striped table-bordered ms-5' style={{width:"350%"}}>
         <thead>
             <tr>
-                <th scope='col'>Ruc</th>
                 <th scope='col'>Nombre</th>
-                <th scope='col'>Celular</th>
-                <th scope='col'>Correo</th>
                 <th scope='col'>Accion</th>
                 
             </tr>
         </thead>
         <tbody>
-           <Provedores></Provedores>
+           <Categories></Categories>
         </tbody>
         
     </table>
@@ -48,15 +42,15 @@ const Tabla = ()=>{
         
         {mostrarModal? (
         <Modal onClose={cerrarModal}>
-
-        <AddProvedor></AddProvedor>
+            <AddCategorias></AddCategorias>
       <div className="float-end">
         <button type="button" className="btn btn-outline-danger " onClick={cerrarModal}>Cerrar</button>
         
       </div>
         </Modal>
       ):((<div >
-        <h1> Provedores</h1>
+      <h1 className='position-relative start-100 categoria' > Categorias</h1>
+        
         <button className='btn btn-dark float-start mb-2 ms-5' onClick={abrirModal}>Añadir Provedor</button>
  
             <div className='col-12'>
@@ -72,9 +66,9 @@ const Tabla = ()=>{
 };
 
 
-ProvedoresC.propTypes = {
+Categorias.propTypes = {
 
 };
 
 
-export default ProvedoresC;
+export default Categorias;

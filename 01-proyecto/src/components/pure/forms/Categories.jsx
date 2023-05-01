@@ -1,19 +1,19 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { register } from '../../../services/axiosRegisterService';
+import { registerCategories } from '../../../services/axiosCategoriesService';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
 
 
-const Categorias = () => {
+const AddCategorias = () => {
 
     const createCategories = (values) => {
-        register(values.name)
+        registerCategories(values.name)
             .then((response) => {
                 console.log("usuario creado", response.data);
                 console.log(values.name);
-                alert("Categoria creada creado")
+                alert("Categoria creada")
             })
             .catch((error) => {
                 alert("Ocurrio un error, ");
@@ -25,8 +25,10 @@ const Categorias = () => {
     const initialCredentials = {
         name: "",
     }
+
+
     return (
-        <div className=''>
+        <div className='m-5  '>
 
 
             <Formik initialValues={initialCredentials}
@@ -74,7 +76,7 @@ const Categorias = () => {
                                                    </div>
                                 
                                 <button type="submit" className='btn btn-primary m-2 w-100'>
-                                    Crear nuevo usuario
+                                    Crear nuevo categoria
                                 </button>
                             </Form>
                         </div>
@@ -87,9 +89,9 @@ const Categorias = () => {
 };
 
 
-Categorias.propTypes = {
+AddCategorias.propTypes = {
 
 };
 
 
-export default Categorias;
+export default AddCategorias;

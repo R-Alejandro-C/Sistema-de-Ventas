@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { tareas } from '../../models/Prodructs';
-import { NIVEL } from '../../models/Level';
-import Provedores from '../pure/tables/Provedores';
-import AddProvedor from '../pure/forms/ProvedoresForm';
-import { GetProvider } from '../../services/axiosProviders';
+import Prodructs from '../pure/tables/Products';
+import "../../styles/product.css"
 import Modal from '../pure/Modal';
-
-const ProvedoresC = () => {
+import AddProduct from '../pure/forms/Products';
+const Productos = () => {
     const [mostrarModal, setMostrarModal] = useState(false);
 
     const abrirModal = () => {
@@ -22,19 +19,17 @@ const ProvedoresC = () => {
 const Tabla = ()=>{
     return(
        
-        <table className='table table-striped table-bordered m-5' style={{width:"100%"}}>
+        <table className='table table-striped table-bordered m-5 ' style={{width:"130%"}}>
         <thead>
             <tr>
-                <th scope='col'>Ruc</th>
                 <th scope='col'>Nombre</th>
-                <th scope='col'>Celular</th>
-                <th scope='col'>Correo</th>
+                <th scope='col'>Categoria</th>
+                <th scope='col'>Cantidad</th>
                 <th scope='col'>Accion</th>
-                
             </tr>
         </thead>
         <tbody>
-           <Provedores></Provedores>
+           <Prodructs></Prodructs>
         </tbody>
         
     </table>
@@ -44,20 +39,18 @@ const Tabla = ()=>{
 
     return (
         <>
-        
-        
-        {mostrarModal? (
+         {mostrarModal? (
         <Modal onClose={cerrarModal}>
-
-        <AddProvedor></AddProvedor>
+            <AddProduct></AddProduct>
       <div className="float-end">
         <button type="button" className="btn btn-outline-danger " onClick={cerrarModal}>Cerrar</button>
         
       </div>
         </Modal>
-      ):((<div >
-        <h1> Provedores</h1>
-        <button className='btn btn-dark float-start mb-2 ms-5' onClick={abrirModal}>Añadir Provedor</button>
+      ):(
+        <div className=''>
+        <h1 className='categoria'>  Productos</h1>
+        <button className='btn btn-dark float-start mb-2 ms-5' onClick={abrirModal}>Añadir Prodructo</button>
  
             <div className='col-12'>
                     
@@ -65,16 +58,16 @@ const Tabla = ()=>{
                         <Tabla></Tabla>
                       
             </div>
-           
-        </div>))
-        }</>
+            
+        </div>)}
+        </>
     );
 };
 
 
-ProvedoresC.propTypes = {
+Productos.propTypes = {
 
 };
 
 
-export default ProvedoresC;
+export default Productos;

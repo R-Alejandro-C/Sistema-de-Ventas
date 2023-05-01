@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Navigate, Link} from "react-router-dom"
 import "../styles/barStyles.css"
+
 const SideBar = () => {
+    
     return (
         <div className='sidebar'>
             <ul>
@@ -12,9 +14,6 @@ const SideBar = () => {
                 <Link  to={"/providers"}>Provedores</Link>
                 </li>
                 <li>
-                <Link  to={"/register"}>Registrar</Link>
-                </li>
-                <li>
                 <Link  to={"/users"}>Usuarios</Link>
                 </li>
                 <li>
@@ -23,9 +22,7 @@ const SideBar = () => {
                 <li>
                 <Link  to={"/products"}>Productos</Link>
                 </li>
-                <li>
-                <Link  to={"/categories"}>Categorias</Link>
-                </li>
+   
             </ul>
         </div>
     );

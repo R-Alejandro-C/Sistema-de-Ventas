@@ -4,79 +4,106 @@ import { NIVEL } from "../../../models/Level";
 import { tareas } from '../../../models/Prodructs.js';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from "yup";
+import { CreateProvider } from '../../../services/axiosProviders';
 
-const AddProvedor = ({ addTarea }) => {
+const AddProvedor = () => {
 
-    const initialValues = {
-        nombre: "",
-        descripcion: "",
-        completado: false,
-        nivel: NIVEL.normal
+   const  CreateProviders =(values)=>{
+    CreateProvider(values.RUC, values.name, values.phone, values.email)
+    .then((response)=>{
+        console.log(response.data);
+        alert("Provedor creado")
+    })
+    }
+    const initialCredentials = {
+        RUC: "",
+        name: "",
+        phone: "",
+        email: ""
     }
 
-    const addTaskSchema = Yup.object().shape(
-        {
-            nombre: Yup.string().required("El nombre es requerido").max(10, "El nombre no puede tener mas de 10 palabras"),
-            descripcion: Yup.string(),
-            nivel: Yup.string()
-        }
-    )
-
     return (
-        <Formik
-            initialValues={initialValues}
-            validationSchema={addTaskSchema}
-            onSubmit={(values, actions) => {
-                setTimeout(() => {
-                    addTarea(values);
-                });
-            }}
-        >
+
+        <div className='d-flex justify-content-center align-align-items-center m-lg-2'>
+
+
+        <Formik initialValues={initialCredentials}
+
+            onSubmit={async (values) => {
+                CreateProviders(values)
+
+            }}>
+            
+
             {({ values,
                 touched,
                 errors,
                 isSubmitting,
                 handleChange,
                 handBluer }) => (
-                <Form className="justify-content-center align-items-center mb-4">
-                     <div className='d-flex'>
-                    <Field id="nombre" type="nombre" name="nombre" placeholder="nombre" className='form-control form-control-lg  m-2'/>
-                    {
-                        errors.nombre && touched.nombre && (
-
-                            <ErrorMessage name="nombre" component={"p"}></ErrorMessage>
-                        )
-                    }
-                   
-                    <Field id="descripcion" type="descripcion" name="descripcion" placeholder="descripcion" className='form-control form-control-lg  m-2'/>
-                    {
-                        errors.descripcion && touched.descripcion && (
-
-                            <ErrorMessage name="descripcion" component={"p"}></ErrorMessage>
-                        )
-                    }
-                    <Field as="select" name="nivel" className='form-control form-control-lg m-2'>
-                        <option value={NIVEL.normal}>normal</option>
-                        <option value={NIVEL.bloqueante}>bloqueante</option>
-                        <option value={NIVEL.urgente}>urgente</option>
-                    </Field>
-
-                    {
-                        errors.nivel && touched.nivel && (
-
-                            <ErrorMessage name="nivel" component={"p"}></ErrorMessage>
-                        )
-                    }
+                <div className=' card justify-content-center d-flex p-lg-2 m-lg-3'>
+                    <div className='d-flex justify-content-center'>
+                
                     </div>
-                    <button type="submit" className='btn btn-primary btn-lg m-2'>
-                        Agregar tarea
-                    </button>
-                </Form>
+                    <div className=' p-lg-2 d-flex justify-content-center align-items-center'>
+                        <Form>
+                            <div className="mb-lg-3 d-flex align-items-center g-5">
+                            <div className='mb-lg-3 me-lg-2'>
+                                    <label htmlFor='RUC' className='form-label m-lg-2'>RUC</label>
+                                    <Field id="RUC" type="text" name="RUC" placeholder="RUC" className="form-control" />
+                                    {
+                                        errors.RUC && touched.RUC && (
+
+                                            <ErrorMessage name="RUC" component={"div"}></ErrorMessage>
+                                        )
+                                    }
+                                </div>
+                                <div className='mb-lg-3 me-lg-2'>
+                                    <label htmlFor='name' className='form-label m-lg-2'>Nombre</label>
+                                    <Field id="name" type="text" name="name" placeholder="Nombre" className="form-control" />
+                                    {
+                                        errors.name && touched.name && (
+
+                                            <ErrorMessage name="name" component={"div"}></ErrorMessage>
+                                        )
+                                    }
+                                </div>
+                                
+                                    
+                                    </div>
+                                    <div className="mb-lg-3 d-flex align-items-center g-5">
+                                <div className='mb-lg-3 me-lg-2'>
+                                    <label htmlFor='phone' className='form-label m-2'>phone</label>
+                                    <Field id="phone" type="text" name="phone" placeholder="phone" className="form-control" />
+                                    {
+                                        errors.phone && touched.phone && (
+
+                                            <ErrorMessage name="phone" component={"div"}></ErrorMessage>
+                                        )
+                                    }
+                                    </div>
+                                    <div className='mb-lg-3 me-lg-2'>
+                                        <label htmlFor='email' className='form-label m-2'>Correo</label>
+                                        <Field id="email" type="text" name="email" placeholder="Correo" className="form-control" />
+                                        {
+                                            errors.email && touched.email && (
+
+                                                <ErrorMessage name="email" component={"div"}></ErrorMessage>
+                                            )
+                                        }
+                                    </div>
+                                    </div>
+                            <button type="submit" className='btn btn-primary w-100'>
+                                Crear nuevo usuario
+                            </button>
+                        </Form>
+                    </div>
+                </div>
             )}
 
-
         </Formik>
-    );
+    </div>
+);
 }
 AddProvedor.propTypes = {
     addTarea: PropTypes.func.isRequired

@@ -13,26 +13,32 @@ import SideBar from '../components/SideBar';
 import Provedores from '../components/container/Provedores';
 import ProvedoresC from '../components/container/Provedores';
 import UsuariosC from '../components/container/Usuarios';
-import Categorias from '../components/pure/register/Categories';
+import Categorias from '../components/container/Categorias';
+import Productos from '../components/container/Productos';
+﻿import { useContext } from "react"
+import { UserContext } from '../components/pure/login/login';
 const MainRoutes = () => {
-
+    
     console.log(!!localStorage.getItem("TOKEN"));
-   
+    const isLoged = useContext(UserContext)
+console.log("User "+ isLoged);
     return (
         <Router>
+        
         <div>
+        
        <Navbar></Navbar>
           <div className='d-flex'>
             <SideBar></SideBar>
-            <div className='content'>
+            
 
             <Routes>
      
              <Route element={<ProtectedPages isLogin={!!localStorage.getItem("TOKEN")} redirectTo='/login'></ProtectedPages>}>
-                
                 <Route path='/' element={<Homepage></Homepage>}></Route>
                 <Route path='/providers' element={<ProvedoresC></ProvedoresC>}></Route>
                 <Route path='/users' element={<UsuariosC></UsuariosC>}></Route>
+                <Route path='/products' element={<Productos></Productos>}></Route>
                 <Route path='/categories' element={<Categorias></Categorias>}></Route>
                 </Route>
                 <Route element={<ProtectedPages isLogin={!localStorage.getItem("TOKEN")} redirectTo='/'></ProtectedPages>}>
@@ -45,7 +51,7 @@ const MainRoutes = () => {
             </Routes>
              </div>
           </div>
-          </div>
+          
         </Router>
     );
 }
