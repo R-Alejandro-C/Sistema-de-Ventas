@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Route, Routes, Link, Navigate, redirect} from "
 import ProtectedPages from './protectedPages';
 import LoginPage from '../pages/auth/LoginPage';
 import RegisterPage from '../pages/auth/registerPage';
-import { ROLES } from '../models/Roles';
 import Homepage from '../pages/home/homepage';
 import Login from '../components/pure/login/login';
 import PropTypes from 'prop-types';

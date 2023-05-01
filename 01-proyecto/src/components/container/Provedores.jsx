@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { tareas } from '../../models/Prodructs';
-import { NIVEL } from '../../models/Level';
 import Provedores from '../pure/tables/Provedores';
 import AddProvedor from '../pure/forms/ProvedoresForm';
 import { GetProvider } from '../../services/axiosProviders';

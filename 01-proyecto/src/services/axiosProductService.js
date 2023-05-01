@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const registerProduct = (name, categoriesId, quantity)=>{
+export const registerProduct = (name, categoryId, quantity)=>{
     let body = {
         name:name,
-        categoriesId:categoriesId,
+        categoryId:categoryId,
         quantity: quantity
         
     }

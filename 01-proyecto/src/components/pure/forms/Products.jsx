@@ -1,54 +1,57 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { registerProduct, GetDetailsProduct, GetProduct } from '../../../services/axiosProductService';
+import { registerProduct} from '../../../services/axiosProductService';
+import { GetCategories, GetDetailsCategories } from '../../../services/axiosCategoriesService';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
+
 const AddProduct = () => {
-    const [products, setproducts] = useState([]);
-    const [selectedProduct, setselectedProduct] = useState([]);
+    const [Categories, setCategories] = useState([]);
+    const [selectedCategories, setselectedCategories] = useState([]);
     useEffect(() => {
 
-        getAllproducts();
+        getAllCategoriess();
     }, []);
 
-    const getAllproducts = () => {
-        GetProduct()
+    const getAllCategoriess = () => {
+        GetCategories()
             .then((response) => {
-                setproducts(response.data)
-                console.log(products);
+                setCategories(response.data)
+                console.log(Categories);
             })
             .catch((error) => {
                 alert("ocurrio un error")
                 console.log(error);
             })
     }
-    const obtainDetailsProduct = (id) => {
-        GetDetailsProduct(id)
+    const obtainDetailsCategories = (id) => {
+        GetDetailsCategories(id)
             .then((response) => {
-                setselectedProduct(response.data)
-                console.log(setselectedProduct);
+                setselectedCategories(response.data)
+                console.log(setselectedCategories);
             })
             .catch((error) => {
                 alert(`algo va mal ${error}`)
             })
             .finally(() => {
                 console.log("Final de obtencion de details datos");
-                console.log("select", setselectedProduct);
+                console.log("select", setselectedCategories);
             })
     }
 
     const createProduct = (values) => {
-        registerProduct(values.name, values.email, IDREF.current.value, values.quantity)
+        registerProduct(values.name, IDREF.current.value, values.quantity)
             .then((response) => {
                 console.log("usuario creado", response.data);
-                console.log(values.name + " " + IDREF.current.value + " " + values.job + "");
-                alert("Usuario creado")
+                console.log(values.name + " " + IDREF.current.value + ""+values.quantity);
+                alert("Producto creado")
             })
             .catch((error) => {
                 alert("Ocurrio un error, ");
                 console.log(error);
-                console.log(values.name + " " + values.DNI + " " + values.password + " " + values.email + " " + values.Rol + " " + values.job + "");
+                console.log(values.name + " id " + IDREF.current.value + " cantidad"+values.quantity);
+               
             })
             .finally(() => {
                 console.log("Fin de creacion de usuario");
@@ -60,8 +63,8 @@ const AddProduct = () => {
 
     const initialCredentials = {
         name: "",
-        categoriesId: 1,
-        quantity: "",
+        categoriesId: null,
+        quantity: 0,
     }
     return (
         <div className='d-flex justify-content-center align-align-items-center m-lg-2'>
@@ -124,16 +127,16 @@ const AddProduct = () => {
 
                                     <div className='mb-lg-3 me-lg-2'>
                                         <label htmlFor='ID' className='form-label m-2'>Categoria</label>
-                                        <select id="ID" type="text" name="ID" className="form-select" ref={IDREF}>
+                                            <select  id="ID" type="text" name="ID" className="form-select" ref={IDREF}>
+                                        {Categories.map((Categories, index) => (
+                                          
+                                                <option  key={index} products ={GetDetailsCategories(Categories.id)} value={Categories.id}>
+                                                    {Categories.name}
+                                                </option>
+                                            
+                                        ))}
+                                            </select>
 
-                                            <option selected value={2}>
-                                                Vendedor
-                                            </option>
-                                            <option value={1}>
-                                                ADMIN
-                                            </option>
-
-                                        </select>
                                         {
                                             errors.ROL && touched.ROL && (
 
