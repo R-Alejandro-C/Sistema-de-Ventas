@@ -5,6 +5,8 @@ import AddProvedor from '../pure/forms/Crear/ProvedoresForm';
 import { GetProvider } from '../../services/axiosProviders';
 import Modal from '../pure/Modal';
 import EditProvedor from '../pure/forms/Editar/ProvedoresForm';
+import Entrys from '../pure/tables/Entrys';
+import AddEntrada from '../pure/forms/Crear/Entradas';
 
 const EntrysC = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
@@ -32,15 +34,16 @@ const Tabla = ()=>{
         <table className='table table-striped table-bordered m-5' style={{width:"100%"}}>
         <thead>
             <tr>
-                <th scope='col'>Ruc</th>
-                <th scope='col'>Nombre</th>
-                <th scope='col'>Celular</th>
-                <th scope='col'>Correo</th>
+                <th scope='col'>Prodructo</th>
+                <th scope='col'>Cantidad</th>
+                <th scope='col'>Precio Unitario</th>
+                <th scope='col'>Total</th>                
+                <th scope='col'>Accion</th>
                 
             </tr>
         </thead>
         <tbody>
-           <Provedores></Provedores>
+           <Entrys></Entrys>
         </tbody>
         
     </table>
@@ -55,15 +58,15 @@ const Tabla = ()=>{
         {mostrarModal? (
         <Modal onClose={cerrarModal}>
 
-        <AddProvedor></AddProvedor>
+        <AddEntrada></AddEntrada>
       <div className="float-end">
         <button type="button" className="btn btn-outline-danger " onClick={cerrarModal}>Cerrar</button>
         
       </div>
         </Modal>
       ):((<div >
-        <h1> Provedores</h1>
-        <button className='btn btn-dark float-start mb-2 ms-5' onClick={abrirModal}>Añadir Provedor</button>
+        <h1> Entradas</h1>
+        <button className='btn btn-dark float-start mb-2 ms-5' onClick={abrirModal}>Comprar</button>
         
 <button className="btn btn-warning ms-2 float-start" onClick={abrirModal2}>Editar</button>
             <div className=''>

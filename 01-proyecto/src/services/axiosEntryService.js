@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const RegisterEntrys = (saleId, productId, quantity, unitPrice, subTotal) => {
+export const RegisterEntrys = (entryId, productId, quantity, unitPrice, subTotal) => {
     let body = {
-        saleId: saleId, 
+        entryId: entryId, 
         productId: productId,
         quantity: quantity,
         unitPrice: unitPrice,
@@ -11,9 +11,9 @@ export const RegisterEntrys = (saleId, productId, quantity, unitPrice, subTotal)
     return axios.post("https://project-system-logistic-production.up.railway.app/entries-details", body)
   
 }
-export const EditEntrys= (saleId, productId, quantity, unitPrice, subTotal, id) => {
+export const EditEntrys= (entryId, productId, quantity, unitPrice, subTotal, id) => {
     let body = {
-        saleId: saleId, 
+        entryId: entryId, 
         productId: productId,
         quantity: quantity,
         unitPrice: unitPrice,
