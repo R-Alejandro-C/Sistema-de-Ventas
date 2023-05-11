@@ -7,12 +7,21 @@ export const CreateProvider = (RUC, name, phone, email) => {
         phone: phone,
         email: email
     }
-
-
     return axios.post("https://project-system-logistic-production.up.railway.app/providers", body)
+}
+export const EditProvider = (RUC, name, phone, email, status, id) => {
+    let body = {
+        RUC: RUC, 
+        name: name,
+        phone: phone,
+        email: email,
+        status:status,
+    }
+
+
+return axios.patch(`https://project-system-logistic-production.up.railway.app/providers/${id}`, body)
 
 }
-
 export const GetProvider = () => {
     return axios.get("https://project-system-logistic-production.up.railway.app/providers")
 

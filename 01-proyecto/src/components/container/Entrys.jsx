@@ -6,7 +6,7 @@ import { GetProvider } from '../../services/axiosProviders';
 import Modal from '../pure/Modal';
 import EditProvedor from '../pure/forms/Editar/ProvedoresForm';
 
-const ProvedoresC = () => {
+const EntrysC = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [mostrarModal2, setMostrarModal2] = useState(false);
 
@@ -36,7 +36,6 @@ const Tabla = ()=>{
                 <th scope='col'>Nombre</th>
                 <th scope='col'>Celular</th>
                 <th scope='col'>Correo</th>
-                <th scope='col'>Accion</th>
                 
             </tr>
         </thead>
@@ -90,9 +89,9 @@ const Tabla = ()=>{
 };
 
 
-ProvedoresC.propTypes = {
+EntrysC.propTypes = {
 
 };
 
 
-export default ProvedoresC;
+export default EntrysC;

@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Categories from '../pure/tables/Categories';
 import Modal from '../pure/Modal';
-import AddCategorias from '../pure/forms/Categories';
+import AddCategorias from '../pure/forms/Crear/Categories';
 import "../../styles/product.css"
+import EditCategorias from '../pure/forms/Editar/Categories';
 const Categorias = () => {
     const [mostrarModal, setMostrarModal] = useState(false);
 
+    const [mostrarModal2, setMostrarModal2] = useState(false);
     const abrirModal = () => {
       setMostrarModal(true);
     };
@@ -14,19 +16,27 @@ const Categorias = () => {
     const cerrarModal = () => {
       setMostrarModal(false);
     };
-
+    const abrirModal2 = () => {
+      setMostrarModal2(true);
+    };
+  
+    const cerrarModal2 = () => {
+      setMostrarModal2(false);
+    };
 
 const Tabla = ()=>{
     return(
        
-        <table className='table table-striped table-bordered ms-5' style={{width:"350%"}}>
+        <table className='table table-striped table-bordered ms-5' style={{width:"300%"}}>
+        
         <thead>
             <tr>
+            
                 <th scope='col'>Nombre</th>
-                <th scope='col'>Accion</th>
                 
             </tr>
         </thead>
+        
         <tbody>
            <Categories></Categories>
         </tbody>
@@ -48,13 +58,23 @@ const Tabla = ()=>{
         
       </div>
         </Modal>
-      ):((<div >
+      ):((<div>
       <h1 className='position-relative start-100 categoria' > Categorias</h1>
         
-        <button className='btn btn-dark float-start mb-2 ms-5' onClick={abrirModal}>Añadir Provedor</button>
- 
-            <div className='col-12'>
-                    
+        <button className='btn btn-dark float-start mb-2 ms-5' onClick={abrirModal}>Añadir Categorias</button>
+        <button className="btn btn-warning ms-2" onClick={abrirModal2}>Editar</button>
+       
+            <div className=''>
+                     {mostrarModal2 &&(
+                      <div className=''>
+            <Modal onClose={cerrarModal2}>
+            <EditCategorias></EditCategorias>
+      <div className="float-end">
+        <button type="button" className="btn btn-outline-danger " onClick={cerrarModal2}>Cerrar</button>
+        
+      </div>
+        </Modal>
+        </div>)}
                       
                         <Tabla></Tabla>
                       

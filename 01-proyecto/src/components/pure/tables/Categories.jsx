@@ -1,11 +1,22 @@
 import "../../../styles/product.css"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { GetCategories, DeleteCategories,GetDetailsCategories } from '../../../services/axiosCategoriesService';
-
-const Categories = () => {
+import { GetCategories, DeleteCategories,GetDetailsCategories,EditCategories } from '../../../services/axiosCategoriesService';
+import Modal from "../Modal";
+import EditCategorias from "../forms/Editar/Categories";
+const Categories = (props) => {
     const [Categories, setCategories] = useState([]);
     const [selectedCategories, setselectedCategories] = useState([]);
+    const [mostrarModal, setMostrarModal] = useState(false);
+    const refName = useRef()
+    const abrirModal = () => {
+      setMostrarModal(true);
+    };
+  
+    const cerrarModal = () => {
+      setMostrarModal(false);
+    };
+
     useEffect(() => {
 
         getAllCategoriess();
@@ -37,6 +48,18 @@ const Categories = () => {
             })
     }
 
+    const editCategories = (name,id) => {
+        EditCategorias(name,id)
+            .then((response) => {
+                setCategories(Categories.filter(Categories => Categories.id === id))
+                console.log(id);
+            })
+            .catch((error) => {
+                alert(`algo va mal ${error}`)
+            })
+    }
+
+
     const deleteCategories = (id) => {
         DeleteCategories(id)
             .then((response) => {
@@ -47,29 +70,35 @@ const Categories = () => {
             })
     }
 
+    
     return (
         <>
-        {Categories.map((Categories, index) =>
-            ( <tr key={index} Categoriess={GetDetailsCategories(Categories.id)}>
-   
-   <th scope="row">
-       <span className="ms-2">
-       {Categories.name}
-                  
-                   
-       </span>
-   </th>
-     <td className="aling-middle">
-     
-     <span className="">  
-     <div className='center'>  
-     <button className='btn btn-warning ms-2' >Editar</button>
-     </div>
-     </span> 
-     </td>
- </tr>)
-           ) }
-    </>
+       
+            {Categories.map((Categories, index) =>
+                ( <tr key={index} Categoriess={GetDetailsCategories(Categories.id)}>
+
+       <th scope="row">
+           <span className="ms-2">
+           {Categories.name}
+                      
+                       
+           </span>
+       </th>
+        
+         {mostrarModal && (
+        <Modal onClose={cerrarModal}>
+            <EditCategorias></EditCategorias>
+      <div className="float-end">
+        <button type="button" className="btn btn-outline-danger " onClick={cerrarModal}>Cerrar</button>
+        
+      </div>
+        </Modal>
+      )}
+     </tr>)
+               ) }
+                             
+        </>
+       
     );
 };
 

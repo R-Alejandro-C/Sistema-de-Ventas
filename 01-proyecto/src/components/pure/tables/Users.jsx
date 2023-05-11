@@ -109,7 +109,7 @@ const Users = () => {
      <span className="">  
      <div className='center'>  
      <button className='btn btn-danger ms-1' onClick={()=>DeleteUsers(User.id)}>Eliminar</button>
-     <button className='btn btn-warning ms-1 center'>Editar</button>
+     
      </div>
      </span> 
      </td>

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { registerCategories } from '../../../services/axiosCategoriesService';
+import { registerCategories } from '../../../../services/axiosCategoriesService';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
 

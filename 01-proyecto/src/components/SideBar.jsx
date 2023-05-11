@@ -8,7 +8,10 @@ const SideBar = () => {
         <div className='sidebar'>
             <ul>
                 <li>
-                <Link  to={"/"}>Inicio</Link>
+                <Link to={"/"}>Inicio</Link>
+                </li>
+                <li>
+                <Link  to={"/sales"}>Ventas</Link>
                 </li>
                 <li>
                 <Link  to={"/providers"}>Provedores</Link>
@@ -22,7 +25,11 @@ const SideBar = () => {
                 <li>
                 <Link  to={"/products"}>Productos</Link>
                 </li>
-   
+                <li>
+                <Link  to={"/entrys"}>Entradas</Link>
+                </li>           
+
+
             </ul>
         </div>
     );

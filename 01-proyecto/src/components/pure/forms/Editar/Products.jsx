@@ -1,18 +1,49 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
-import { registerProduct} from '../../../services/axiosProductService';
-import { GetCategories, GetDetailsCategories } from '../../../services/axiosCategoriesService';
+import { registerProduct, EditProduct, GetProduct, GetDetailsProduct } from '../../../../services/axiosProductService';
+import { GetCategories, GetDetailsCategories } from '../../../../services/axiosCategoriesService';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
 
-const AddProduct = () => {
+const EditProducts = () => {
     const [Categories, setCategories] = useState([]);
     const [selectedCategories, setselectedCategories] = useState([]);
     useEffect(() => {
 
         getAllCategoriess();
     }, []);
+    const [products, setproducts] = useState([]);
+    const [selectedProduct, setselectedProduct] = useState([]);
+    useEffect(() => {
+
+        getAllproducts();
+    }, []);
+
+    const getAllproducts = () => {
+        GetProduct()
+            .then((response) => {
+                setproducts(response.data)
+                console.log(products);
+            })
+            .catch((error) => {
+                alert("ocurrio un error")
+                console.log(error);
+            })
+    }
+    const obtainDetailsProduct = (id) => {
+        GetDetailsProduct(id)
+            .then((response) => {
+                setselectedProduct(response.data)
+                console.log(setselectedProduct);
+            })
+            .catch((error) => {
+                alert(`algo va mal ${error}`)
+            })
+            .finally(() => {
+                console.log("Final de obtencion de details datos");
+                console.log("select", setselectedProduct);
+            })
+    }
 
     const getAllCategoriess = () => {
         GetCategories()
@@ -40,18 +71,19 @@ const AddProduct = () => {
             })
     }
 
-    const createProduct = (values) => {
-        registerProduct(values.name, IDREF.current.value, values.quantity)
+
+    const editProduct = (values, id) => {
+        EditProduct(values.name, IDREF.current.value, values.quantity, ProductRef.current.value)
             .then((response) => {
                 console.log("usuario creado", response.data);
-                console.log(values.name + " " + IDREF.current.value + ""+values.quantity);
+                console.log(values.name + " " + IDREF.current.value + "" + values.quantity);
                 alert("Producto creado")
             })
             .catch((error) => {
                 alert("Ocurrio un error, ");
                 console.log(error);
-                console.log(values.name + " id " + IDREF.current.value + " cantidad"+values.quantity);
-               
+                console.log(values.name + " id " + IDREF.current.value + " cantidad" + values.quantity);
+
             })
             .finally(() => {
                 console.log("Fin de creacion de usuario");
@@ -60,7 +92,7 @@ const AddProduct = () => {
 
 
     const IDREF = useRef(null)
-
+    const ProductRef = useRef(null)
     const initialCredentials = {
         name: "",
         categoriesId: null,
@@ -73,7 +105,7 @@ const AddProduct = () => {
             <Formik initialValues={initialCredentials}
 
                 onSubmit={async (values) => {
-                    createProduct(values)
+                    editProduct(values)
 
                 }}>
                 {/** 
@@ -101,9 +133,21 @@ const AddProduct = () => {
                         </div>
                         <div className=' p-lg-2 d-flex justify-content-center align-items-center'>
                             <Form>
+                            <div className='mb-lg-3 me-lg-2'>
+                                        <label htmlFor='ID' className='form-label m-2'>Editar</label>
+                                        <select id="ID" type="text" name="ID" className="form-select" ref={ProductRef}>
+                                            {products.map((products, index) => (
+
+                                                <option key={index} products={GetDetailsCategories(products.id)} value={products.id}>
+                                                    {products.name}
+                                                </option>
+
+                                            ))}
+                                        </select>
+                                    </div>
                                 <div className="mb-lg-3  align-items-center row g-0 text-center">
                                     <div className='me-2 col-sm-6 col-md-9'>
-                                        <label htmlFor='name' className='form-label m-lg-2'>Nombre</label>
+                                        <label htmlFor='name' className='form-label m-lg-2'>Nuevo Nombre</label>
                                         <Field id="name" type="text" name="name" placeholder="Nombre" className="form-control" />
                                         {
                                             errors.name && touched.name && (
@@ -127,27 +171,21 @@ const AddProduct = () => {
 
                                     <div className='mb-lg-3 me-lg-2'>
                                         <label htmlFor='ID' className='form-label m-2'>Categoria</label>
-                                            <select  id="ID" type="text" name="ID" className="form-select" ref={IDREF}>
-                                        {Categories.map((Categories, index) => (
-                                          
-                                                <option  key={index} products ={GetDetailsCategories(Categories.id)} value={Categories.id}>
+                                        <select id="ID" type="text" name="ID" className="form-select" ref={IDREF}>
+                                            {Categories.map((Categories, index) => (
+
+                                                <option key={index} products={GetDetailsCategories(Categories.id)} value={Categories.id}>
                                                     {Categories.name}
                                                 </option>
-                                            
-                                        ))}
-                                            </select>
 
-                                        {
-                                            errors.ROL && touched.ROL && (
-
-                                                <ErrorMessage name="ROL" component={"div"}></ErrorMessage>
-                                            )
-                                        }
+                                            ))}
+                                        </select>
                                     </div>
+
                                 </div>
 
                                 <button type="submit" className='btn btn-primary w-100'>
-                                    Crear producto
+                                    Editar producto
                                 </button>
                             </Form>
                         </div>
@@ -160,9 +198,9 @@ const AddProduct = () => {
 };
 
 
-AddProduct.propTypes = {
+EditProducts.propTypes = {
 
 };
 
 
-export default AddProduct;
+export default EditProducts;

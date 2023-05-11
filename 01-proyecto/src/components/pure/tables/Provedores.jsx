@@ -79,7 +79,7 @@ const Provedores = () => {
      <span className="">  
      <div className='center'>  
      <button className='btn btn-danger' onClick={()=> deleteProvider(providers.id)}>Eliminar</button>
-     <button className='btn btn-warning ms-2' >Editar</button>
+     
      </div>
      </span> 
      </td>

@@ -21,3 +21,13 @@ export const GetDetailsProduct = (id)=>{
 export const DeleteProduct = (id)=>{
     return axios.delete(`https://project-system-logistic-production.up.railway.app/products/${id}`)
 }
+
+export const EditProduct = (name, categoryId, quantity,id)=>{
+    let body = {
+        name:name,
+        categoryId:categoryId,
+        quantity: quantity
+        
+    }
+    return axios.patch(`https://project-system-logistic-production.up.railway.app/products/${id}`, body)
+}

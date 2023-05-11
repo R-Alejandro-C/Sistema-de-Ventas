@@ -1,28 +1,28 @@
 import "../../../styles/product.css"
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { GetDetailsProduct, DeleteProduct, GetProduct } from '../../../services/axiosProductService';
-const Products = () => {
-    const [products, setproducts] = useState([]);
+import { GetDetailsSales, GetSales, DeleteSales, EditSales } from '../../../services/axiosSalesServices';
+const Sales = () => {
+    const [Sales, setSales] = useState([]);
     const [selectedProduct, setselectedProduct] = useState([]);
     useEffect(() => {
 
-        getAllproducts();
+        getAllSales();
     }, []);
 
-    const getAllproducts = () => {
-        GetProduct()
+    const getAllSales = () => {
+        GetSales()
             .then((response) => {
-                setproducts(response.data)
-                console.log(products);
+                setSales(response.data)
+                console.log(Sales);
             })
             .catch((error) => {
                 alert("ocurrio un error")
                 console.log(error);
             })
     }
-    const obtainDetailsProduct = (id) => {
-        GetDetailsProduct(id)
+    const obtainDetailsSale = (id) => {
+        GetDetailsSales(id)
             .then((response) => {
                 setselectedProduct(response.data)
                 console.log(setselectedProduct);
@@ -36,10 +36,10 @@ const Products = () => {
             })
     }
 
-    const deleteProduct = (id) => {
-        DeleteProduct(id)
+    const DeleteSale = (id) => {
+        DeleteSales(id)
             .then((response) => {
-                setproducts(products.filter(products => products.id !== id))
+                setSales(Sales.filter(Sales => Sales.id !== id))
             })
             .catch((error) => {
                 alert(`algo va mal ${error}`)
@@ -48,36 +48,42 @@ const Products = () => {
 
     return (
         <>
-        {products.map((products, index) =>
-            ( <tr key={index} products={GetDetailsProduct(products.id)}>
-   
-   <th scope="row">
+        {Sales.map((Sales, index) =>
+            ( <tr key={index} Sales={GetDetailsSales(Sales.id)}>
+   {Sales.sale.dateSale? <><th scope="row">
        <span className="ms-2">
-       {products.name}
+       {Sales.product.name}
                   
                    
        </span>
    </th>
    <td className="aling-middle">
        <span className="ms-2"> 
-       {products.category.name}        
+       {Sales.quantity}        
        </span>
    </td>
    <td className="aling-middle">
        
    <span className="ms-2">   
-   {products.quantity}
+   {Sales.unitPrice}
      </span>
    </td>
+   <td className="aling-middle">
+       
+       <span className="ms-2">   
+       {Sales.subTotal}
+         </span>
+       </td>
      <td className="aling-middle">
      
      <span className="">  
      <div className='center'>  
-     <button className='btn btn-danger' onClick={()=> deleteProduct(products.id)}>Eliminar</button>
+     <button className='btn btn-danger' onClick={()=> DeleteSale(Sales.id)}>Eliminar</button>
      
      </div>
      </span> 
-     </td>
+     </td></>:<>Fecha no correcta</>}
+   
  </tr>)
            ) }
     </>
@@ -85,9 +91,9 @@ const Products = () => {
 };
 
 
-Products.propTypes = {
+Sales.propTypes = {
 
 };
 
 
-export default Products;
+export default Sales;

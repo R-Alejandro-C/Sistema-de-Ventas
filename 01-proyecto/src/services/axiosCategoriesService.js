@@ -18,3 +18,11 @@ export const GetDetailsCategories = (id)=>{
 export const DeleteCategories = (id)=>{
     return axios.delete(`https://project-system-logistic-production.up.railway.app/categories/${id}`)
 }
+
+
+export const EditCategories = (name,id)=>{
+    let body = {
+        name:name
+    }
+    return axios.patch(`https://project-system-logistic-production.up.railway.app/categories/${id}`, body)
+}

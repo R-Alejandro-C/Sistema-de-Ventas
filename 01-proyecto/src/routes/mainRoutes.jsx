@@ -16,6 +16,8 @@ import Categorias from '../components/container/Categorias';
 import Productos from '../components/container/Productos';
 ﻿import { useContext } from "react"
 import { UserContext } from '../components/pure/login/login';
+import SalesC from '../components/container/Sales';
+import EntrysC from '../components/container/Entrys';
 const MainRoutes = () => {
     
     console.log(!!localStorage.getItem("TOKEN"));
@@ -39,6 +41,8 @@ console.log("User "+ isLoged);
                 <Route path='/users' element={<UsuariosC></UsuariosC>}></Route>
                 <Route path='/products' element={<Productos></Productos>}></Route>
                 <Route path='/categories' element={<Categorias></Categorias>}></Route>
+                <Route path='/sales' element={<SalesC></SalesC>}></Route>
+                <Route path='/entrys' element={<EntrysC></EntrysC>}></Route>
                 </Route>
                 <Route element={<ProtectedPages isLogin={!localStorage.getItem("TOKEN")} redirectTo='/'></ProtectedPages>}>
                  <Route path='/login' element={<LoginPage></LoginPage>}></Route>
