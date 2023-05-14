@@ -1,31 +1,29 @@
 import "../../../styles/product.css"
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { GetDetailsSales, GetSales, DeleteSales, EditSales } from '../../../services/axiosSalesServices';
-const Sales = () => {
-    const [Sales, setSales] = useState([]);
+import { GetDetailsEntrys, GetEntrys, DeleteEntrys, EditEntrys } from '../../../services/axiosEntryService';
+const Entrys = () => {
+    const [Entrys, setEntrys] = useState([]);
     const [selectedProduct, setselectedProduct] = useState([]);
     useEffect(() => {
 
-      getAllSales();
-     
+        getAllEntrys();
     }, []);
 
-    const getAllSales = () => {
-          GetSales()
+    const getAllEntrys = () => {
+        GetEntrys()
             .then((response) => {
-                const sales =  response.data;
-                sales.sort((a, b) => b.id - a.id);
-                setSales(sales);
-                console.log(Sales);
+                setEntrys(response.data)
+                console.log(Entrys);
             })
             .catch((error) => {
                 alert("ocurrio un error")
                 console.log(error);
+                
             })
     }
-    const obtainDetailsSale = (id) => {
-        GetDetailsSales(id)
+    const obtainDetailsEntry = (id) => {
+        GetDetailsEntrys(id)
             .then((response) => {
                 setselectedProduct(response.data)
                 console.log(setselectedProduct);
@@ -40,9 +38,9 @@ const Sales = () => {
     }
 
     const DeleteSale = (id) => {
-        DeleteSales(id)
+        DeleteEntrys(id)
             .then((response) => {
-                setSales(Sales.filter(Sales => Sales.id !== id))
+                setEntrys(Entrys.filter(Entrys => Entrys.id !== id))
             })
             .catch((error) => {
                 alert(`algo va mal ${error}`)
@@ -51,48 +49,47 @@ const Sales = () => {
 
     return (
         <>
-        {Sales.map((Sales, index) =>
-            ( <tr key={index} Sales={GetDetailsSales(Sales.id)}>
-   {Sales.sale.dateSale? <><th scope="row">
+        {Entrys.map((Entrys, index) =>
+            ( <tr key={index} Entrys={GetDetailsEntrys(Entrys.id)}>
+            <th scope="row">
        <span className="ms-2">
-       {Sales.product.name}
+       {Entrys.product.name}
                   
                    
        </span>
    </th>
    <td className="aling-middle">
        <span className="ms-2"> 
-       {Sales.quantity}        
+       {Entrys.quantity}        
        </span>
    </td>
    <td className="aling-middle">
        
    <span className="ms-2">   
-   {Sales.unitPrice}
+   {Entrys.unitPrice}
      </span>
    </td>
    <td className="aling-middle">
        
        <span className="ms-2">   
-       {Sales.subTotal}
+       {Entrys.subTotal}
          </span>
-       </td> 
-         <td className="aling-middle">
+       </td>
+       <td className="aling-middle">
        
        <span className="ms-2">   
-       {new Date(Sales.dateSale).toLocaleString()}
+       {Entrys.dateEntry}
          </span>
        </td>
      <td className="aling-middle">
      
      <span className="">  
      <div className='center'>  
-     <button className='btn btn-danger' onClick={()=> DeleteSale(Sales.id)}>Eliminar</button>
+     <button className='btn btn-danger' onClick={()=> DeleteSale(Entrys.id)}>Eliminar</button>
      
      </div>
      </span> 
-     </td></>:<>Fecha no correcta</>}
-   
+     </td>   
  </tr>)
            ) }
     </>
@@ -100,9 +97,9 @@ const Sales = () => {
 };
 
 
-Sales.propTypes = {
+Entrys.propTypes = {
 
 };
 
 
-export default Sales;
+export default Entrys;

@@ -39,6 +39,7 @@ const Tabla = ()=>{
                 <th scope='col'>Cantidad</th>
                 <th scope='col'>Precio de venta</th>
                 <th scope='col'>Total</th>
+                <th scope='col'>Fecha</th>
                 <th scope='coo'>Accion</th>
             </tr>
         </thead>
