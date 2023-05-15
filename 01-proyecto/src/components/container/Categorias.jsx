@@ -5,10 +5,11 @@ import Modal from '../pure/Modal';
 import AddCategorias from '../pure/forms/Crear/Categories';
 import "../../styles/product.css"
 import EditCategorias from '../pure/forms/Editar/Categories';
+import { switchCase } from '@babel/types';
 const Categorias = () => {
     const [mostrarModal, setMostrarModal] = useState(false);
-
     const [mostrarModal2, setMostrarModal2] = useState(false);
+    const [Filtro, setMostrarFiltro] = useState(0);
     const abrirModal = () => {
       setMostrarModal(true);
     };
@@ -23,7 +24,15 @@ const Categorias = () => {
     const cerrarModal2 = () => {
       setMostrarModal2(false);
     };
-
+    const mensual = () => {
+      setMostrarFiltro(1);
+    };
+    const semanal = () => {
+      setMostrarFiltro(2);
+    };
+    const diario = () => {
+      setMostrarFiltro(3);
+    };
 const Tabla = ()=>{
     return(
        
@@ -38,6 +47,7 @@ const Tabla = ()=>{
         </thead>
         
         <tbody>
+        
            <Categories></Categories>
         </tbody>
         

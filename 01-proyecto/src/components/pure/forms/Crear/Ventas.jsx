@@ -16,8 +16,8 @@ const [selectedProduct, setselectedProduct] = useState([]);
   
     useEffect(() => {
       const multiplicar = () => {
-        const num1 = parseInt(num1Ref.current.value);
-        const num2 = parseInt(num2Ref.current.value);
+        const num1 = parseFloat(num1Ref.current.value);
+        const num2 = parseFloat(num2Ref.current.value);
         resultadoRef.current.innerText = num1 * num2;
       };
   

@@ -3,16 +3,15 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { GetDetailsSales, GetSales, DeleteSales, EditSales } from '../../../services/axiosSalesServices';
 
-const Sales = (props) => {
+const SalesD = () => {
     const [Sales, setSales] = useState([]);
     const [selectedProduct, setselectedProduct] = useState([]);
-    const {handleFechaInicial, handleFechaFinal } = props;
     useEffect(() => {
 
       getAllSales();
      
     }, []);
-    console.log("fehca i " + handleFechaInicial);
+   const dia = new Date()
     const getAllSales = () => {
           GetSales()
             .then((response) => {
@@ -52,17 +51,12 @@ const Sales = (props) => {
     }
 
     return (
-        <>
-        {}
+        <> 
       {Sales
       .filter((Sales)=>{
-        if (handleFechaInicial && new Date(Sales.dateSale) < handleFechaInicial) {
-      return false;
-    }
-    if (handleFechaFinal && new Date(Sales.dateSale) > handleFechaFinal) {
-      return false;
-    }
-    return true;
+        if(dia.getDate() === new Date(Sales.dateSale).getDate()){
+          return true
+        } 
       })
       .map((Sales, index) =>
             ( <tr key={index} Sales={GetDetailsSales(Sales.id)}>
@@ -100,6 +94,7 @@ const Sales = (props) => {
      
      <span className="">  
      <div className='center'>  
+         
      <button className='btn btn-danger' onClick={()=> DeleteSale(Sales.id)}>Eliminar</button>
      
      </div>
@@ -113,9 +108,9 @@ const Sales = (props) => {
 };
 
 
-Sales.propTypes = {
+SalesD.propTypes = {
 
 };
 
 
-export default Sales;
+export default SalesD;

@@ -9,10 +9,25 @@ import AddVentas from '../pure/forms/Crear/Ventas';
 import {Navigate, Link} from "react-router-dom"
 import Reporte from '../pure/Reporte';
 import Sales from '../pure/tables/Sales';
-const SalesC = () => {
-  const [mostrarModal, setMostrarModal] = useState(false);
-  const [mostrarModal2, setMostrarModal2] = useState(false);
+import { isSwitchCase } from '@babel/types';
+import SalesD from '../pure/tables/SalesD';
+import SalesS from '../pure/tables/SalesS';
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
+const SalesC = ({handleFechaInicial,handleFechaFinal}) => {
+  const [mostrarModal, setMostrarModal] = useState(false); 
+  const [mostrarModal2, setMostrarModal2] = useState(false);   
+  const [reporte, setReporte] = useState(null)   
+  const [ventas, setVentas] = useState([]);
+  const [fechaInicial, setFechaInicial] = useState('');
+  const [fechaFinal, setFechaFinal] = useState('');
+    function handleFechaInicial(date) {
+    setFechaInicial(date);
+  }
 
+     function handleFechaFinal(date) {
+    setFechaFinal(date);
+  }
     const abrirModal = () => {
       setMostrarModal(true);
     };
@@ -21,13 +36,6 @@ const SalesC = () => {
       setMostrarModal(false);
     };
 
-    const abrirModal2 = () => {
-      setMostrarModal2(true);
-    };
-  
-    const cerrarModal2 = () => {
-      setMostrarModal2(false);
-    };
 
 const Tabla = ()=>{
     return(
@@ -44,7 +52,7 @@ const Tabla = ()=>{
             </tr>
         </thead>
         <tbody>
-           <Sales></Sales>
+           <Sales  handleFechaInicial={fechaInicial} handleFechaFinal={fechaFinal} ></Sales>
         </tbody>
         
     </table>
@@ -66,20 +74,20 @@ const Tabla = ()=>{
       </div>
         </Modal>
       ):((<div>
-        <Reporte></Reporte>
+        <div  className='d-flex m-3 gap-3 ms-5'>
+        <div>
+        <label htmlFor="fecha-inicial">Fecha inicial:</label>
+        <DatePicker id="fecha-inicial" selected={fechaInicial} onChange={handleFechaInicial} />
+      </div>
+      <div>
+        <label htmlFor="fecha-final">Fecha final:</label>
+        <DatePicker id="fecha-final" selected={fechaFinal} onChange={handleFechaFinal} />
+      </div>
+        </div>
         <button className='btn btn-success float-start mb-2 ms-5' onClick={abrirModal}>Añadir Venta</button>
         
             <div className=''>
-            {mostrarModal2 &&(
-                      
-                      <Modal onClose={cerrarModal2}>
-                      <EditProvedor></EditProvedor>
-                <div className="float-end">
-                  <button type="button" className="btn btn-outline-danger " onClick={cerrarModal2}>Cerrar</button>
-                  
-                </div>
-                  </Modal>
-                  )}   
+
                     
                       
                         <Tabla></Tabla>
