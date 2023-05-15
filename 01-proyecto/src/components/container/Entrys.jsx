@@ -6,6 +6,7 @@ import { GetProvider } from '../../services/axiosProviders';
 import Modal from '../pure/Modal';
 import EditProvedor from '../pure/forms/Editar/ProvedoresForm';
 import Entrys from '../pure/tables/Entrys';
+import AddEntrada from '../pure/forms/Crear/Entradas';
 
 const EntrysC = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
@@ -58,7 +59,7 @@ const Tabla = ()=>{
         {mostrarModal? (
         <Modal onClose={cerrarModal}>
 
-        <AddProvedor></AddProvedor>
+        <AddEntrada></AddEntrada>
       <div className="float-end">
         <button type="button" className="btn btn-outline-danger " onClick={cerrarModal}>Cerrar</button>
         
@@ -66,25 +67,10 @@ const Tabla = ()=>{
         </Modal>
       ):((<div >
         <h1> Compras</h1>
-        <button className='btn btn-dark float-start mb-2 ms-5' onClick={abrirModal}>Añadir Provedor</button>
-        
-<button className="btn btn-warning ms-2 float-start" onClick={abrirModal2}>Editar</button>
-            <div className=''>
-            {mostrarModal2 &&(
-                      
-                      <Modal onClose={cerrarModal2}>
-                      <EditProvedor></EditProvedor>
-                <div className="float-end">
-                  <button type="button" className="btn btn-outline-danger " onClick={cerrarModal2}>Cerrar</button>
-                  
-                </div>
-                  </Modal>
-                  )}   
-                    
+        <button className='btn btn-dark float-start mb-2 ms-5' onClick={abrirModal}>Comprar</button>
+            
                       
                         <Tabla></Tabla>
-                      
-            </div>
            
         </div>))
         }</>
