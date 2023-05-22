@@ -18,6 +18,7 @@ import Productos from '../components/container/Productos';
 import { UserContext } from '../components/pure/login/login';
 import SalesC from '../components/container/Sales';
 import EntrysC from '../components/container/Entrys';
+import Profile from '../pages/profile/profile';
 const MainRoutes = () => {
     
     console.log(!!localStorage.getItem("TOKEN"));
@@ -30,7 +31,11 @@ console.log("User "+ isLoged);
         
        <Navbar></Navbar>
           <div className='d-flex'>
-            <SideBar></SideBar>
+          {localStorage.getItem("Id")? (<SideBar></SideBar>):
+          (<div className='sidebar' style={{borderRight:""}}>
+
+          </div>)}
+            
             
 
             <Routes>
@@ -43,9 +48,11 @@ console.log("User "+ isLoged);
                 <Route path='/categories' element={<Categorias></Categorias>}></Route>
                 <Route path='/sales' element={<SalesC></SalesC>}></Route>
                 <Route path='/entrys' element={<EntrysC></EntrysC>}></Route>
+                
                 </Route>
                 <Route element={<ProtectedPages isLogin={!localStorage.getItem("TOKEN")} redirectTo='/'></ProtectedPages>}>
                  <Route path='/login' element={<LoginPage></LoginPage>}></Route>
+                 <Route path='/profile' element={<Profile></Profile>}></Route>
                  </Route>
                  <Route element={<ProtectedPages isLogin={!!localStorage.getItem("TOKEN") && localStorage.getItem("RoleId")==="1"} redirectTo='/'></ProtectedPages>}>
                  <Route path='/register' element={<RegisterPage></RegisterPage>}></Route>

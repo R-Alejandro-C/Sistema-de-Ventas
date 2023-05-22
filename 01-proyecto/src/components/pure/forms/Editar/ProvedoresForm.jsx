@@ -1,8 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from "yup";
-import { CreateProvider, EditProvider, GetProvider, GetDetailsProviders } from '../../../../services/axiosProviders';
+import {EditProvider, GetProvider, GetDetailsProviders } from '../../../../services/axiosProviders';
 
 const EditProvedor = () => {
     const [providers, setproviders] = useState([]);
@@ -42,7 +41,7 @@ const EditProvedor = () => {
     EditProvider(values.RUC, values.name, values.phone, values.email, true, IDREF.current.value)
     .then((response)=>{
         console.log(response.data);
-        alert("Provedor creado")
+        alert("Provedor modificado")
     })
     }
     const initialCredentials = {

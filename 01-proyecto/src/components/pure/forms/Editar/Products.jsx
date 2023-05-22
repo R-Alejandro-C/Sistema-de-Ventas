@@ -77,7 +77,7 @@ const EditProducts = () => {
             .then((response) => {
                 console.log("usuario creado", response.data);
                 console.log(values.name + " " + IDREF.current.value + "" + values.quantity);
-                alert("Producto creado")
+                alert("Producto modificado")
             })
             .catch((error) => {
                 alert("Ocurrio un error, ");

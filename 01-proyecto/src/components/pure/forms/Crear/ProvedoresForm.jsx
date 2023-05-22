@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from "yup";
 import { CreateProvider } from '../../../../services/axiosProviders';
 
 const AddProvedor = () => {

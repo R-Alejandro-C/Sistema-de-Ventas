@@ -1,10 +1,8 @@
 import React,{ useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import Users from '../pure/tables/Users';
-import {GetUser,DeleteUser,GetDetailsUser} from "../../services/axiosUsers"
 import Register from '../pure/register/register';
 import Modal from '../pure/Modal';
-import EditUser from '../pure/forms/Editar/User';
 import EditUsers from '../pure/forms/Editar/User';
 const UsuariosC = () => {
     const [User, setUser] = useState([]);

@@ -1,6 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
 import { EditUser, GetDetailsUser, GetUser } from '../../../../services/axiosUsers';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
@@ -44,7 +42,7 @@ const EditUsers = () => {
             .then((response) => {
                 console.log("usuario creado", response.data);
                 console.log(values.name +" "+ROLREF.current.value+" "+values.job+"");
-                alert("Usuario creado")
+                alert("Usuario modificado")
             })
             .catch((error) => {
                 alert("Ocurrio un error, ");

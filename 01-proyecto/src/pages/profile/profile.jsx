@@ -1,53 +1,72 @@
-import React, {useRef, useState, createContext} from 'react';
-import { login } from '../../../services/axiosLoginService';
+import React, {useRef, useState, useEffect} from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
+import { EditUser, GetUser, GetDetailsUser } from '../../services/axiosUsers';
 
+const Profile = () => {
+  const [User, setUser] = useState([]);
+  const [selectedUser, setselectedUser] = useState([]);
 
+  useEffect(() => {
+  getAllUsers()  
+  }, [])
+  
+  const getAllUsers =()=>{
+      GetUser()
+      .then((response)=>{
+          setUser(response.data)
+          console.log(response.data);
+      })
+      .catch((error)=>{
+      alert("ocurrio un error")
+      console.log(error);
+      })
+  }
 
-export const UserContext = createContext()
+  const obtainDetailsUser = (id) => {
+      GetDetailsUser(id)
+          .then((response) => {
+              setselectedUser(response.data)
+              console.log(setselectedUser);
+          })
+          .catch((error) => {
+              alert(`algo va mal ${error}`)
+          })
+          .finally(() => {
+              console.log("Final de obtencion de details datos");
+              console.log("select", setselectedUser);
+          })
+  }
 
-const Login = () => {
-
-const [isLoged, setisLoged] = useState(localStorage.getItem("TOKEN"));
-const authUser = (values)=>{
-    login(values.username, values.password)
-    .then((response)=>{
-        console.log(JSON.stringify(response.status));
-        if (JSON.stringify(response.data.token)) {
-            console.log(response.data);
-            localStorage.setItem("TOKEN", JSON.stringify(response.data.token))
-            localStorage.setItem("Id", JSON.stringify(response.data.user.id))
-            localStorage.setItem("Nombre", JSON.stringify(response.data.user.name))
-            localStorage.setItem("RoleId", JSON.stringify(response.data.user.roleId))
-            
-           
-        } else {
-            alert("Usuario y/o contraseña incorrecta");
-        }
-
-    })
-    .catch((error)=>{
-        alert("ocurrio un error", error)
-        console.log(values.username);
-        console.log(values.password);
-        console.log("----------------------");
-        console.log(error);
-        
-    })
-    .then(()=>{
-        setInterval(window.location.reload(), 500  );
-    })
-
-}
-const initialCredentials = {
-    username: "",
-    password: ""
-}
+  const editUser = (values, id) => {
+      EditUser()
+          .then((response) => {
+              console.log("usuario creado", response.data);
+             alert("Usuario modificado")
+          })
+          .catch((error) => {
+              alert("Ocurrio un error, ");
+              console.log(error);
+            })
+          .finally(() => {
+              console.log("Fin de creacion de usuario");
+          })
+  }
+  const ROLREF = useRef(null)
+  const IDREF = useRef(null)
+  const initialCredentials = {
+      name: "",
+      lastname: "",
+      DNI: "",
+      email: "",
+      password: "",
+      Rol: 1,
+      job: ""
+  }
 
     
     return (
-<UserContext.Provider value={{isLoged}}>
+<div>
         <div style={{marginLeft:"13rem"}}>
         <div className='d-flex justify-content-center align-align-items-center'>
             
@@ -55,7 +74,7 @@ const initialCredentials = {
         <Formik initialValues={initialCredentials} 
         
         onSubmit={async (values) => {
-            authUser(values)
+           editUser(values)
 
         }}>
  
@@ -81,7 +100,7 @@ const initialCredentials = {
                         )
                     }
                     </div>
-                    <label htmlFor='password'  className='form-label'>Contraseña</label>
+                    <label htmlFor='password'  className='form-label'> Nueva Contraseña</label>
                     <Field id="password" type="password" name="password" placeholder="password" className="form-control"/>
                     {
                         errors.password && touched.password && (
@@ -92,8 +111,9 @@ const initialCredentials = {
                     }
                     
                     <button type="submit" className='btn btn-primary mt-3 w-100'>
-                        Ingresar
+                        Corregir
                     </button>
+                    
                 </Form>
                 </div>
                 </div>
@@ -102,14 +122,14 @@ const initialCredentials = {
         </Formik>
         </div>
         </div>
-        </UserContext.Provider>
+        </div>
         )
     
 }
 
 
-Login.propTypes = {
+Profile.propTypes = {
 };
 
 
-export default Login;
+export default Profile;

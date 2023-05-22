@@ -1,6 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
 import { EditCategories, GetCategories, GetDetailsCategories } from '../../../../services/axiosCategoriesService';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 
@@ -46,7 +44,7 @@ const [Categories, setCategories] = useState([]);
             .then((response) => {
                 console.log("usuario creado", response.data);
                 console.log(values.name);
-                alert("Categoria creada")
+                alert("Categoria modificada")
             })
             .catch((error) => {
                 alert("Ocurrio un error, ");

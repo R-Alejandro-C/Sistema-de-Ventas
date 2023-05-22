@@ -1,6 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
 import { registerProduct} from '../../../../services/axiosProductService';
 import { GetCategories, GetDetailsCategories } from '../../../../services/axiosCategoriesService';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
@@ -45,7 +43,7 @@ const AddProduct = () => {
             .then((response) => {
                 console.log("usuario creado", response.data);
                 console.log(values.name + " " + IDREF.current.value + ""+values.quantity);
-                alert("Producto creado")
+                alert("Producto Añadido")
             })
             .catch((error) => {
                 alert("Ocurrio un error, ");

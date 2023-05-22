@@ -2,14 +2,17 @@ import "../../../styles/product.css"
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { GetDetailsEntrys, GetEntrys, DeleteEntrys, EditEntrys } from '../../../services/axiosEntryService';
-const Entrys = () => {
+import Sales from "./Sales";
+const Entrys = (props) => {
     const [Entrys, setEntrys] = useState([]);
     const [selectedProduct, setselectedProduct] = useState([]);
+    const {handleFechaInicial, handleFechaFinal} = props
     useEffect(() => {
 
         getAllEntrys();
     }, []);
 
+    console.log("fehca i " + handleFechaFinal);
     const getAllEntrys = () => {
         GetEntrys()
             .then((response) => {
@@ -49,7 +52,17 @@ const Entrys = () => {
 
     return (
         <>
-        {Entrys.map((Entrys, index) =>
+        {Entrys
+            .filter((Entrys)=>{
+        if (handleFechaInicial && new Date(Entrys.dateEntry) < handleFechaInicial) {
+      return false;
+    }
+    if (handleFechaFinal && new Date(Entrys.dateEntry) > handleFechaFinal) {
+      return false;
+    }
+    return true;
+        })
+        .map((Entrys, index) =>
             ( <tr key={index} Entrys={GetDetailsEntrys(Entrys.id)}>
             <th scope="row">
        <span className="ms-2">
@@ -78,7 +91,7 @@ const Entrys = () => {
        <td className="aling-middle">
        
        <span className="ms-2">   
-       {Entrys.dateEntry}
+       {new Date(Entrys.dateEntry).toLocaleString()}
          </span>
        </td>
      <td className="aling-middle">

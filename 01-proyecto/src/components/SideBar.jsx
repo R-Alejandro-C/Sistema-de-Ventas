@@ -5,7 +5,9 @@ import "../styles/barStyles.css"
 const SideBar = () => {
     
     return (
+        
         <div className='sidebar'>
+        
             <ul>
                 <li>
                 <Link to={"/"}>Inicio</Link>

@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Provedores from '../pure/tables/Provedores';
-import AddProvedor from '../pure/forms/Crear/ProvedoresForm';
-import { GetProvider } from '../../services/axiosProviders';
 import Modal from '../pure/Modal';
-import EditProvedor from '../pure/forms/Editar/ProvedoresForm';
 import Entrys from '../pure/tables/Entrys';
 import AddEntrada from '../pure/forms/Crear/Entradas';
-
-const EntrysC = () => {
+import DatePicker from 'react-datepicker';
+const EntrysC = ({handleFechaInicial,handleFechaFinal}) => {
   const [mostrarModal, setMostrarModal] = useState(false);
-  const [mostrarModal2, setMostrarModal2] = useState(false);
+  const [fechaInicial, setFechaInicial] = useState('');
+  const [fechaFinal, setFechaFinal] = useState('');
+    function handleFechaInicial(date) {
+    setFechaInicial(date);
+  }
 
+     function handleFechaFinal(date) {
+    setFechaFinal(date);
+  }
     const abrirModal = () => {
       setMostrarModal(true);
     };
@@ -20,13 +23,6 @@ const EntrysC = () => {
       setMostrarModal(false);
     };
 
-    const abrirModal2 = () => {
-      setMostrarModal2(true);
-    };
-  
-    const cerrarModal2 = () => {
-      setMostrarModal2(false);
-    };
 
 const Tabla = ()=>{
     return(
@@ -44,7 +40,7 @@ const Tabla = ()=>{
             </tr>
         </thead>
         <tbody>
-           <Entrys></Entrys>
+           <Entrys handleFechaInicial={fechaInicial} handleFechaFinal={fechaFinal}></Entrys>
         </tbody>
         
     </table>
@@ -65,8 +61,17 @@ const Tabla = ()=>{
         
       </div>
         </Modal>
-      ):((<div >
-        <h1> Compras</h1>
+      ):((<div > 
+       <div  className='d-flex m-3 gap-3 ms-5'>
+        <div>
+        <label htmlFor="fecha-inicial">Fecha inicial:</label>
+        <DatePicker id="fecha-inicial" selected={fechaInicial} onChange={handleFechaInicial} />
+      </div>
+      <div>
+        <label htmlFor="fecha-final">Fecha final:</label>
+        <DatePicker id="fecha-final" selected={fechaFinal} onChange={handleFechaFinal} />
+      </div>
+        </div>
         <button className='btn btn-dark float-start mb-2 ms-5' onClick={abrirModal}>Comprar</button>
             
                       

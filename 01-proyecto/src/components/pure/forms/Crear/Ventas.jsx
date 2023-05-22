@@ -1,8 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
 import { RegisterSales } from '../../../../services/axiosSalesServices';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import { GetProduct, GetDetailsProduct } from '../../../../services/axiosProductService'; 
 
 
@@ -65,7 +63,7 @@ const obtainDetailsProduct = (id) => {
             .then((response) => {
                 console.log("usuario creado", response.data);
                 console.log(values.name);
-                alert("Categoria creada")
+                alert("Veta concretada")
             })
             .catch((error) => {
                 alert("Ocurrio un error, ");

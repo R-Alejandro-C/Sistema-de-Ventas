@@ -1,8 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
 import { RegisterEntrys } from '../../../../services/axiosEntryService';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import { GetProduct, GetDetailsProduct } from '../../../../services/axiosProductService'; 
 
 
@@ -61,11 +59,11 @@ const obtainDetailsProduct = (id) => {
         })
 }
     const createEntrys = (values) => {
-        RegisterEntrys(1,IDREF.current.value, num1Ref.current.value, num2Ref.current.value, resultadoRef.current.innerText)
+        RegisterEntrys(1,IDREF.current.value, parseFloat(num1Ref.current.value), parseFloat(num2Ref.current.value), resultadoRef.current.innerText)
             .then((response) => {
                 console.log("usuario creado", response.data);
                 console.log(values.name);
-                alert("Categoria creada")
+                alert("Compra realizada con exito")
             })
             .catch((error) => {
                 alert(error);
@@ -162,7 +160,7 @@ const obtainDetailsProduct = (id) => {
                                     </div>
                                     <div className='me-lg-2'>
                                         <label htmlFor='subTotal' className='form-label m-lg-2'>Total</label>
-                                        <p ref={resultadoRef} id="subTotal" type="text" name="subTotal" className="form-control" disabled style={{height:"37.33px"}} />
+                                        <p ref={resultadoRef} id="subTotal" type="number" name="subTotal" className="form-control" disabled style={{height:"37.33px"}} />
                                        </div>
                                 </div>
 

@@ -1,6 +1,6 @@
 .sidebar{
     width: 8rem;
-    height: calc(100vh - 55px);
+    height: calc(150vh);
     border-right: 1px solid gray;
     padding-right: 10rem;
     margin-right: 10%;

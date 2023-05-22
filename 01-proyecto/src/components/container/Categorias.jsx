@@ -5,7 +5,6 @@ import Modal from '../pure/Modal';
 import AddCategorias from '../pure/forms/Crear/Categories';
 import "../../styles/product.css"
 import EditCategorias from '../pure/forms/Editar/Categories';
-import { switchCase } from '@babel/types';
 const Categorias = () => {
     const [mostrarModal, setMostrarModal] = useState(false);
     const [mostrarModal2, setMostrarModal2] = useState(false);
