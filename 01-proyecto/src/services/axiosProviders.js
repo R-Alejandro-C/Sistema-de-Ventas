@@ -7,7 +7,7 @@ export const CreateProvider = (RUC, name, phone, email) => {
         phone: phone,
         email: email
     }
-    return axios.post("https://project-system-logistic-production.up.railway.app/providers", body)
+    return axios.post("http://localhost:4200/providers", body)
 }
 export const EditProvider = (RUC, name, phone, email, status, id) => {
     let body = {
@@ -19,17 +19,17 @@ export const EditProvider = (RUC, name, phone, email, status, id) => {
     }
 
 
-return axios.patch(`https://project-system-logistic-production.up.railway.app/providers/${id}`, body)
+return axios.patch(`http://localhost:4200/providers/${id}`, body)
 
 }
 export const GetProvider = () => {
-    return axios.get("https://project-system-logistic-production.up.railway.app/providers")
+    return axios.get("http://localhost:4200/providers")
 
 }
 
 export const GetDetailsProviders = (id)=>{
-    return axios.get(`https://project-system-logistic-production.up.railway.app/providers/${id}`)
+    return axios.get(`http://localhost:4200/providers/${id}`)
 }
 export const DeleteProviders = (id)=>{
-    return axios.delete(`https://project-system-logistic-production.up.railway.app/providers/${id}`)
+    return axios.delete(`http://localhost:4200/providers/${id}`)
 }

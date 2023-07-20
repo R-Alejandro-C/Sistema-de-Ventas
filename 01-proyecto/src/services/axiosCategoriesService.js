@@ -4,19 +4,19 @@ export const registerCategories = (name)=>{
     let body = {
         name:name
     }
-    return axios.post("https://project-system-logistic-production.up.railway.app/categories", body)
+    return axios.post("http://localhost:4200/categories", body)
 }
 
 export const GetCategories = () => {
-    return axios.get("https://project-system-logistic-production.up.railway.app/categories")
+    return axios.get("http://localhost:4200/categories")
 
 }
 
 export const GetDetailsCategories = (id)=>{
-    return axios.get(`https://project-system-logistic-production.up.railway.app/categories/${id}`)
+    return axios.get(`http://localhost:4200/categories/${id}`)
 }
 export const DeleteCategories = (id)=>{
-    return axios.delete(`https://project-system-logistic-production.up.railway.app/categories/${id}`)
+    return axios.delete(`http://localhost:4200/categories/${id}`)
 }
 
 
@@ -24,5 +24,5 @@ export const EditCategories = (name,id)=>{
     let body = {
         name:name
     }
-    return axios.patch(`https://project-system-logistic-production.up.railway.app/categories/${id}`, body)
+    return axios.patch(`http://localhost:4200/categories/${id}`, body)
 }

@@ -70,12 +70,12 @@ AntesDeAyer.setDate(yesterday.getDate() - 2);
           .then((response) => {
              const entrys = response.data
              let Total =  entrys.reduce((total,Entrys)=>{return total+Entrys.subTotal*1},0)
-            let TotalDia = entrys.filter((Entry)=>{
-              if (yesterday < new Date(Entry.dateEntry)) {
-                return true
-              }
-              return false
-            })
+              let TotalDia = entrys.filter((Entry)=>{
+                if (yesterday < new Date(Entry.dateEntry)) {
+                  return true
+                }
+                return false
+              })
             .reduce((tot,Sales)=>{ return tot + Sales.subTotal*1} ,0)
             let TotalDiaAnterior = entrys.filter((Entry)=>{
               if (AntesDeAyer < new Date(Sales.dateSale) && new Date(Sales.dateSale)<yesterday) {

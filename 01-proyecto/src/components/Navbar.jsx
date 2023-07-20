@@ -43,7 +43,7 @@ obtainDetailsUser(idNumer)
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid">
   
-    <Link className="navbar-brand"> <h1 className='fst-italic fw-bold' style={{color:"#FF9D1A"}}>Zorzal</h1></Link>
+    <Link className="navbar-brand"> <h1 className='fst-italic fw-bold' style={{color:"red"}}>Footlose</h1></Link>
     <div className="align-items-center" id="navbarSupportedContent">
       <ul className="navbar-nav text-end align-items-center">
       <li className="nav-item">

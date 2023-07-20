@@ -7,19 +7,19 @@ export const registerProduct = (name, categoryId, quantity)=>{
         quantity: quantity
         
     }
-    return axios.post("https://project-system-logistic-production.up.railway.app/products", body)
+    return axios.post("http://localhost:4200/products", body)
 }
 
 export const GetProduct = () => {
-    return axios.get("https://project-system-logistic-production.up.railway.app/products")
+    return axios.get("http://localhost:4200/products")
 
 }
 
 export const GetDetailsProduct = (id)=>{
-    return axios.get(`hhttps://project-system-logistic-production.up.railway.app/products/${id}`)
+    return axios.get(`hhttp://localhost:4200/products/${id}`)
 }
 export const DeleteProduct = (id)=>{
-    return axios.delete(`https://project-system-logistic-production.up.railway.app/products/${id}`)
+    return axios.delete(`http://localhost:4200/products/${id}`)
 }
 
 export const EditProduct = (name, categoryId, quantity,id)=>{
@@ -29,5 +29,5 @@ export const EditProduct = (name, categoryId, quantity,id)=>{
         quantity: quantity
         
     }
-    return axios.patch(`https://project-system-logistic-production.up.railway.app/products/${id}`, body)
+    return axios.patch(`http://localhost:4200/products/${id}`, body)
 }

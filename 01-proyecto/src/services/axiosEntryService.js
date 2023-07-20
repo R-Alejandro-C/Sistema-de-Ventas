@@ -8,7 +8,7 @@ export const RegisterEntrys = (entryId, productId, quantity, unitPrice, subTotal
         unitPrice: unitPrice,
         subTotal:subTotal
     }
-    return axios.post("https://project-system-logistic-production.up.railway.app/entries-details", body)
+    return axios.post("http://localhost:4200/entries-details", body)
   
 }
 export const EditEntrys= (entryId, productId, quantity, unitPrice, subTotal, id) => {
@@ -22,18 +22,18 @@ export const EditEntrys= (entryId, productId, quantity, unitPrice, subTotal, id)
    }
 
 
-return axios.patch(`https://project-system-logistic-production.up.railway.app/entries-details/${id}`, body)
+return axios.patch(`http://localhost:4200/entries-details/${id}`, body)
 }
 
 export const GetEntrys = () => {
-    return axios.get("https://project-system-logistic-production.up.railway.app/entries-details")
+    return axios.get("http://localhost:4200/entries-details")
 
 }
 
 export const GetDetailsEntrys= (id)=>{
-    return axios.get(`https://project-system-logistic-production.up.railway.app/entries-details/${id}`)
+    return axios.get(`http://localhost:4200/entries-details/${id}`)
 }
 
 export const DeleteEntrys = (id)=>{
-    return axios.delete(`https://project-system-logistic-production.up.railway.app/entries-details/${id}`)
+    return axios.delete(`http://localhost:4200/entries-details/${id}`)
 }

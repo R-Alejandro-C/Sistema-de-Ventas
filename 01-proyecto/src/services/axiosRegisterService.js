@@ -11,5 +11,5 @@ export const register = (DNI, password, name, lastname, email, roleId, job)=>{
         roleId: roleId,
         
     }
-    return axios.post("https://project-system-logistic-production.up.railway.app/users", body)
+    return axios.post("http://localhost:4200/users", body)
 }

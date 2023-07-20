@@ -2,17 +2,17 @@ import axios from "axios";
 
 
 export const GetUser = () => {
-    return axios.get("https://project-system-logistic-production.up.railway.app/users")
+    return axios.get("http://localhost:4200/users")
 
 }
 
 export const GetDetailsUser = (id)=>{
-    return axios.get(`https://project-system-logistic-production.up.railway.app/users/${id}`)
+    return axios.get(`http://localhost:4200/users/${id}`)
 }
 
 
 export const DeleteUser = (id)=>{
-    return axios.delete(`https://project-system-logistic-production.up.railway.app/users/${id}`)
+    return axios.delete(`http://localhost:4200/users/${id}`)
 }
 
 export const EditUser = (DNI, password, name, lastname, email, roleId, status, id)=>{
@@ -26,5 +26,5 @@ export const EditUser = (DNI, password, name, lastname, email, roleId, status, i
         status: status,
         
     }
-    return axios.patch(`https://project-system-logistic-production.up.railway.app/users/${id}`, body)
+    return axios.patch(`http://localhost:4200/users/${id}`, body)
 }

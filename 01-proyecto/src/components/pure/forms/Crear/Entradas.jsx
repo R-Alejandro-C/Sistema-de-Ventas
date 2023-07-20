@@ -61,7 +61,7 @@ const obtainDetailsProduct = (id) => {
     const createEntrys = (values) => {
         RegisterEntrys(1,IDREF.current.value, parseFloat(num1Ref.current.value), parseFloat(num2Ref.current.value), resultadoRef.current.innerText)
             .then((response) => {
-                console.log("usuario creado", response.data);
+                console.log("compra creado", response.data);
                 console.log(values.name);
                 alert("Compra realizada con exito")
             })

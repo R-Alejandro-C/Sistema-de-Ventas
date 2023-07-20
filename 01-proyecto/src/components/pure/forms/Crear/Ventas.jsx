@@ -59,7 +59,7 @@ const obtainDetailsProduct = (id) => {
         })
 }
     const createSales = (values) => {
-        RegisterSales(3,IDREF.current.value, num1Ref.current.value, num2Ref.current.value, resultadoRef.current.innerText)
+        RegisterSales(1,IDREF.current.value, num1Ref.current.value, num2Ref.current.value, resultadoRef.current.innerText)
             .then((response) => {
                 console.log("usuario creado", response.data);
                 console.log(values.name);

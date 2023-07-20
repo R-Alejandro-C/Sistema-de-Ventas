@@ -27,7 +27,7 @@ const SalesC = ({handleFechaInicial,handleFechaFinal}) => {
 const Tabla = ()=>{
     return(
        
-        <table className='table table-striped table-bordered m-5' style={{width:"100%"}}>
+        <table className='table table-striped table-bordered m-3' style={{width:"100%"}}>
         <thead>
             <tr>
                 <th scope='col'>Prodructo</th>
@@ -70,8 +70,9 @@ const Tabla = ()=>{
         <label htmlFor="fecha-final">Fecha final:</label>
         <DatePicker id="fecha-final" selected={fechaFinal} onChange={handleFechaFinal} />
       </div>
+        
         </div>
-        <button className='btn btn-success float-start mb-2 ms-5' onClick={abrirModal}>Añadir Venta</button>
+      <button className='btn btn-dark float-start mb-2 ms-5' onClick={abrirModal}>Generar venta</button>
         
             <div className=''>
 

@@ -100,7 +100,8 @@ const Sales = (props) => {
      
      <span className="">  
      <div className='center'>  
-     <button className='btn btn-danger' onClick={()=> DeleteSale(Sales.id)}>Eliminar</button>
+     <button className='btn btn-primary' onClick={()=> DeleteSale(Sales.id)}>Eliminar</button>
+
      
      </div>
      </span> 
